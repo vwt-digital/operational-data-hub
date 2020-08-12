@@ -13,6 +13,7 @@ truth, capturing all information and business events, enabling the data-driven e
     5. [Data integrated](#data-integrated)
 2. [Components](#components)
     1. [Pub/Sub](#pubsub)
+    2. [Data catalog deployment](#data-catalog-deployment)
 3. [References](#references)
 
 ## Principles
@@ -73,14 +74,13 @@ compared to Apache Kafka; a publish-subscribe based durable messaging system. Th
 via which multiple applications communicate with each based on event-driven messages.
 
 Pub/Sub exists of two key components: topics and subscriptions. A topic can have multiple subscriptions that each have 
-their own purpose. A message is published by a publisher towards a topic where it is added to the end of the message-bus. 
-Thereafter, each subscription can process the message in their own way. Some subscriptions need a function 
-(a subscriber) to retrieve  the data, where some push data towards certain functions, applications or databases. 
-Because a topic can have “endless” subscriptions, the scalability is enormous and each message can be used by 
-different processes.
+their purpose. A message is published by a publisher towards a topic where it is added to the end of the message-bus. 
+Thereafter, each subscription can process the message in their way. Some subscriptions need a function (a subscriber) 
+to retrieve the data, where some push data towards certain functions, applications or databases. Because a topic can 
+have “endless” subscriptions, the scalability is enormous and each message can be used by different processes.
 
 <p align="center">
-  <img src="diagrams/png/cloud_pubsub.png" width="500" title="Cloud Pub/Sub" alt="Cloud Pub/Sub">
+  <img src="diagrams/png/cloud_pubsub.png" width="400" title="Cloud Pub/Sub" alt="Cloud Pub/Sub">
 </p>
 
 As seen in the example above, Cloud Pub/Sub is the connection between different applications, functions and databases. 
@@ -89,8 +89,29 @@ enables easier connections between applications and a single source of truth, he
 the platform to not only provide a dynamic state of the art infrastructure but also endless possibilities for data 
 research to optimize and innovate.
 
+### Data catalog deployment
+Another essential component of the ODH is the data catalog deployment. This is a fully automated deployment for all 
+resources in and around the ODH based on data catalogs; “. . . a detailed inventory of all data assets in an 
+organization, designed to help data professionals quickly find the most appropriate data for any analytical or 
+business purpose” (IBM Cloud Education, 2020). Within the ODH the data catalog has two goals: to maintain a detailed 
+inventory of all data assets and to automatically deploy assets based on that information. This ensures that the 
+information added to the catalogs is always up-to-date. Because of the “endless” scalability of the ODH, the data stored 
+inside the hub can grow exponentially. To keep this in control, an extensive catalogue is needed to maintain insight 
+into the data. 
+
+The data catalogs are based on Project Open Data; a collection of code, tools and case studies commissioned by The 
+White House to “. . . support the implementation of policy, the creation of data governance structures, and the 
+day-to-day work of data management in the federal government” (The Federal Enterprise Data Resources, n.d.). Within 
+this project, a schema definition is defined to create a generic set of information on each asset 
+(https://vwt-digital.github.io/project-company-data.github.io/v1.1/schema/). This schema contains all fields to describe 
+datasets, but also to deploy these datasets to the cloud with the Data catalog deployment functions.
+
 ## References
-- Opensource.com. (n.d.). What is open source? Retrieved July 30, 2020, 
-from https://opensource.com/resources/what-open-source
-- Qwiklabs. (2020, January 10). Introduction to Google Cloud Pub/Sub. Retrieved August 10, 2020, 
-from https://medium.com/@qwiklabs/introduction-to-google-cloud-pub-sub-fce6a31aea9f
+- IBM Cloud Education. (2020, April 3). Data Catalog. Retrieved August 12, 20202, from 
+https://www.ibm.com/cloud/learn/data-catalog
+- Opensource.com. (n.d.). What is open source? Retrieved July 30, 2020, from 
+https://opensource.com/resources/what-open-source
+- Qwiklabs. (2020, January 10). Introduction to Google Cloud Pub/Sub. Retrieved August 10, 2020, from 
+https://medium.com/@qwiklabs/introduction-to-google-cloud-pub-sub-fce6a31aea9
+- The Federal Enterprise Data Resources. (n.d.). Data management & governance. Retrieved August 12, 2020, from 
+https://resources.data.gov/categories/data-management-governance/
