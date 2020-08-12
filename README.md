@@ -11,6 +11,9 @@ truth, capturing all information and business events, enabling the data-driven e
     3. [Serverless](#serverless)
     4. [Security by design](#security-by-design)
     5. [Data integrated](#data-integrated)
+2. [Components](#components)
+    1. [Pub/Sub](#pubsub)
+3. [References](#references)
 
 ## Principles
 The Operational Data Hub, hereafter called “ODH”, is built from the ground up based on six basic principles. These 
@@ -69,9 +72,16 @@ it allows for secure and highly available communication between independently wr
 compared to Apache Kafka; a publish-subscribe based durable messaging system. This messaging system is a central hub 
 via which multiple applications communicate with each based on event-driven messages.
 
+Pub/Sub exists of two key components: topics and subscriptions. A topic can have multiple subscriptions that each have 
+their own purpose. A message is published by a publisher towards a topic where it is added to the end of the message-bus. 
+Thereafter, each subscription can process the message in their own way. Some subscriptions need a function 
+(a subscriber) to retrieve  the data, where some push data towards certain functions, applications or databases. 
+Because a topic can have “endless” subscriptions, the scalability is enormous and each message can be used by 
+different processes.
+
 <img src="diagrams/png/cloud_pubsub.png" height="300" title="Cloud Pub/Sub" alt="Cloud Pub/Sub">
 
-As seen in the example above, Cloud Pub/Sub is the connection between different applications and functions. 
+As seen in the example above, Cloud Pub/Sub is the connection between different applications, functions and databases. 
 This centralized hub to navigate all data through is the strength of the ODH; all data passes through one place that 
 enables easier connections between applications and a single source of truth, hereafter called “SSOT”. This SSOT enables 
 the platform to not only provide a dynamic state of the art infrastructure but also endless possibilities for data 
@@ -80,5 +90,5 @@ research to optimize and innovate.
 ## References
 - Opensource.com. (n.d.). What is open source? Retrieved July 30, 2020, 
 from https://opensource.com/resources/what-open-source
-- Qwiklabs. (2020, Jan 10). Introduction to Google Cloud Pub/Sub. Retrieved August 10, 2020, 
+- Qwiklabs. (2020, January 10). Introduction to Google Cloud Pub/Sub. Retrieved August 10, 2020, 
 from https://medium.com/@qwiklabs/introduction-to-google-cloud-pub-sub-fce6a31aea9f
