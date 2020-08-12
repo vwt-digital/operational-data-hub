@@ -69,7 +69,7 @@ it allows for secure and highly available communication between independently wr
 compared to Apache Kafka; a publish-subscribe based durable messaging system. This messaging system is a central hub 
 via which multiple applications communicate with each based on event-driven messages.
 
-<img src="diagrams/png/cloud_pubsub.png" height="200" title="Cloud Pub/Sub" alt="Cloud Pub/Sub">
+<img src="diagrams/png/cloud_pubsub.png" height="300" title="Cloud Pub/Sub" alt="Cloud Pub/Sub">
 
 As seen in the example above, Cloud Pub/Sub is the connection between different applications and functions. 
 This centralized hub to navigate all data through is the strength of the ODH; all data passes through one place that 
@@ -80,5 +80,5 @@ research to optimize and innovate.
 ## References
 - Opensource.com. (n.d.). What is open source? Retrieved July 30, 2020, 
 from https://opensource.com/resources/what-open-source
-Qwiklabs. (2020, Jan 10). Introduction to Google Cloud Pub/Sub. Retrieved August 10, 2020, 
+- Qwiklabs. (2020, Jan 10). Introduction to Google Cloud Pub/Sub. Retrieved August 10, 2020, 
 from https://medium.com/@qwiklabs/introduction-to-google-cloud-pub-sub-fce6a31aea9f
