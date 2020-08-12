@@ -79,7 +79,9 @@ Thereafter, each subscription can process the message in their own way. Some sub
 Because a topic can have “endless” subscriptions, the scalability is enormous and each message can be used by 
 different processes.
 
-<img src="diagrams/png/cloud_pubsub.png" height="300" title="Cloud Pub/Sub" alt="Cloud Pub/Sub">
+<p align="center">
+  <img src="diagrams/png/cloud_pubsub.png" width="500" title="Cloud Pub/Sub" alt="Cloud Pub/Sub">
+</p>
 
 As seen in the example above, Cloud Pub/Sub is the connection between different applications, functions and databases. 
 This centralized hub to navigate all data through is the strength of the ODH; all data passes through one place that 

@@ -8,7 +8,7 @@ graph_attr = {
     "pad": "0"
 }
 
-with Diagram("Cloud Pub/Sub", graph_attr=graph_attr, show=False, filename="cloud_pubsub"):
+with Diagram("Cloud Pub/Sub", graph_attr=graph_attr, direction="TB", show=False, filename="cloud_pubsub"):
     with Cluster("Publishers"):
         pub_1 = Functions("Function")
         pub_2 = AppEngine("Application")
