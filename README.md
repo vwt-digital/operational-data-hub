@@ -16,6 +16,7 @@ truth, capturing all information and business events, enabling the data-driven e
 2. [Components](#components)
     1. [Pub/Sub](#pubsub)
     2. [Data catalog deployment](#data-catalog-deployment)
+    3. [Backup](#backup)
 3. [References](#references)
 
 ## Principles
@@ -107,6 +108,21 @@ day-to-day work of data management in the federal government” (The Federal Ent
 this project, a schema definition is defined to create a generic set of information on each asset 
 (https://vwt-digital.github.io/project-company-data.github.io/v1.1/schema/). This schema contains all fields to describe 
 datasets, but also to deploy these datasets to the cloud with the Data catalog deployment functions.
+
+### Backup
+When creating an infrastructure where enormous amounts of data pass through, a good data loss prevention 
+(hereafter “DLP”) program is crucial. Within the ODH we’ve integrated fully automated backup processes. These backup 
+processes use the built-in services of the Cloud platform to retrieve, process and store the data.
+
+<p align="center">
+  <img src="diagrams/png/backup_pubsub.png" width="400" title="Pub/Sub backup" alt="Pub/Sub backup">
+</p>
+
+One of the backup processes is the Pub/Sub backup, as displayed above. This process retrieves all messages stored 
+within a Pub/Sub topic and copies them towards a Google Cloud Storage, hereafter “GCS”, bucket. The Cloud Scheduler 
+triggers a Cloud Function what then starts te backup-process. By using a scheduler, this process can run automatically 
+in the background 24/7 and ensures up-to-date data. In case of data loss, the storage will always contain a history of 
+messages that can be restored at any time.
 
 ## References
 - IBM Cloud Education. (2020, April 3). Data Catalog. Retrieved August 12, 20202, from 

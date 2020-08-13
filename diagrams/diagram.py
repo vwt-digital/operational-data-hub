@@ -1,7 +1,9 @@
-from diagrams import Cluster, Diagram
+from diagrams import Cluster, Diagram, Edge
 from diagrams.gcp.analytics import PubSub
 from diagrams.gcp.compute import AppEngine, Functions
 from diagrams.gcp.database import Firestore
+from diagrams.gcp.devtools import Scheduler
+from diagrams.gcp.storage import Storage
 
 graph_attr = {
     "bgcolor": "transparent",
@@ -29,3 +31,15 @@ with Diagram("Cloud Pub/Sub", graph_attr=graph_attr, direction="TB", show=False,
     pub_1 >> sub_x1 >> [sub_1, sub_2]
     pub_1 >> sub_x2 >> sub_3
     pub_2 >> sub_y1 >> [sub_1, sub_3]
+
+
+with Diagram("Pub/Sub backup", graph_attr=graph_attr, show=False, filename="backup_pubsub"):
+    with Cluster("Backup process"):
+        pub = PubSub("Pub/Sub Topic")
+        func = Functions("Cloud Function")
+        stg = Storage("Storage bucket")
+
+    sch = Scheduler("Cloud Scheduler")
+
+    pub >> Edge(label="Pull") >> func >> stg
+    sch >> Edge(style="dashed", label="Subscription name") >> func
