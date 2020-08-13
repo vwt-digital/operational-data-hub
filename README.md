@@ -1,3 +1,5 @@
+<img src="https://img.shields.io/badge/status-pending-orange" alt="Status" title="Status">
+
 # Operational Data Hub
 
 The Operational Data Hub implements an enterprise application integration architecture in which a central data hub 
