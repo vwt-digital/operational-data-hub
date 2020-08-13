@@ -83,7 +83,7 @@ to retrieve the data, where some push data towards certain functions, applicatio
 have “endless” subscriptions, the scalability is enormous and each message can be used by different processes.
 
 <p align="center">
-  <img src="diagrams/png/cloud_pubsub.png" width="400" title="Cloud Pub/Sub" alt="Cloud Pub/Sub">
+  <img src="diagrams/images/service_pubsub.png" width="400" title="Cloud Pub/Sub" alt="Cloud Pub/Sub">
 </p>
 
 As seen in the example above, Cloud Pub/Sub is the connection between different applications, functions and databases. 
@@ -115,7 +115,7 @@ When creating an infrastructure where enormous amounts of data pass through, a g
 processes use the built-in services of the Cloud platform to retrieve, process and store the data.
 
 <p align="center">
-  <img src="diagrams/png/backup_pubsub.png" width="400" title="Pub/Sub backup" alt="Pub/Sub backup">
+  <img src="diagrams/images/backup_pubsub.png" width="400" title="Pub/Sub backup" alt="Pub/Sub backup">
 </p>
 
 One of the backup processes is the Pub/Sub backup, as displayed above. This process retrieves all messages stored 
