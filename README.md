@@ -17,6 +17,7 @@ truth, capturing all information and business events, enabling the data-driven e
     1. [Pub/Sub](#pubsub)
     2. [Data catalog deployment](#data-catalog-deployment)
     3. [Backup](#backup)
+    4. [Security](#security)
 3. [References](#references)
 
 ## Principles
@@ -124,7 +125,23 @@ triggers a Cloud Function what then starts te backup-process. By using a schedul
 in the background 24/7 and ensures up-to-date data. In case of data loss, the storage will always contain a history of 
 messages that can be restored at any time.
 
+### Security
+Another — perhaps the most essential — component is security. Because the ODH is a centralized hub, all data passes 
+through one point. It is crucial to have certain security policies in place to make sure the right people only get 
+access to this data. The ODH is built fully with security in mind, so there are countless ways to provide strong 
+policies. These measures include automated deletion of obsolete Service Account keys, security risk notifications 
+trough a Security Command Centre (Google Cloud, n.d.), data encrypted at rest (Google Cloud, 2020a) and in transit 
+(Google Cloud, n.b.) and daily checks for over-granted permissions. All these security measures are meant to optimize 
+safety for all data within the platform. The permissions of resources are fully provisioned by the catalogs, as 
+described in "[Data catalog deployment](#data-catalog-deployment)". This ensures there is one central place all access is 
+controlled from and contains a detailed revision history.
+
 ## References
+- Google Cloud. (2020a). Encryption at Rest in Google Cloud. 
+https://cloud.google.com/security/encryption-at-rest/default-encryption/resources/encryption-whitepaper.pdf
+- Google Cloud. (2020b). Encryption in Transit in Google Cloud. 
+https://cloud.google.com/security/encryption-in-transit/resources/encryption-in-transit-whitepaper.pdf
+- Google Cloud. (n.d.). Security Command Center. https://cloud.google.com/security-command-center
 - IBM Cloud Education. (2020, April 3). Data Catalog. Retrieved August 12, 20202, from 
 https://www.ibm.com/cloud/learn/data-catalog
 - Opensource.com. (n.d.). What is open source? Retrieved July 30, 2020, from 
