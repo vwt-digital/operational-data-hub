@@ -7,146 +7,67 @@ facilitates all applications to connect and exchange data. This central data hub
 truth, capturing all information and business events, enabling the data-driven enterprise.
 
 ## Table of contents
-1. [Principles](#principles)
-    1. [Open Source](#open-source)
-    2. [Software-defined](#software-defined)
-    3. [Serverless](#serverless)
-    4. [Security by design](#security-by-design)
-    5. [Data integrated](#data-integrated)
-2. [Components](#components)
-    1. [Pub/Sub](#pubsub)
-    2. [Data catalog deployment](#data-catalog-deployment)
-    3. [Backup](#backup)
-    4. [Security](#security)
-3. [References](#references)
+1. [Introduction](#introduction)
+2. [Use cases](#use-cases)
+    1. [Legacy ERP system](#legacy-erp-system)
+    2. [Renewal of third-party licenses](#renewal-of-third-party-licenses)
+    3. [Customer support mailbox](#customer-support-mailbox)
+    4. [Data science](#data-science)
+    5. [Current stock](#current-stock)
+    6. [Available data](#available-data)
 
-## Principles
-The Operational Data Hub, hereafter called “ODH”, is built from the ground up based on six basic principles. These 
-principles define all conceptual ideas and functional implementations the function exists of and are used within 
-further innovations of the hub.
+## Introduction
+This documentation is meant to explain what the Operational Data Hub (hereafter "ODH") is, what it can provide and how 
+it can be used.
 
-### Open Source
-First and foremost the ODH is fully based on and defined by Open Source Software, hereafter called “OSS”. This type 
-of software is meant to  “. . . promote collaboration and sharing because they permit other people to make modifications 
-to source code and incorporate those changes into their own projects” (Opensource.com, n.d.). By releasing all ODH 
-related software as OSS, the ODH becomes a space where everybody is free to participate and enhance the software in 
-unanticipated ways. Besides, the OSS distribution will enable the possibility to incorporate other OSS into its core 
-to improve the quality and functionalities based on the work of millions of contributors. 
 
-### Software-defined
-Another important principle of the ODH is that it is fully software-defined. This is a concept that refers to the 
-ability to control some or all of the functions of a system using software. By becoming software-defined, the ODH 
-enjoys major systemic benefits, including lower costs, higher quality products and services, and less risk. Within 
-our environment, we strive to add, edit and delete everything we do via software to make sure the process can be 
-repeated endlessly and includes minimal space for user errors.
+## Use cases
+To describe how the ODH can be used, a fictional software license and computer parts webshop is used. This webshop has 
+a decentralised application landscape and must innovate to get more value from their data. Below, some use cases from 
+within this webshop describe how the ODH can improve efficiency and data value based on current systems.
 
-### Serverless
-To ensure the ODH will benefit from the innovations and strength of the Cloud, making it serverless was the only way. 
-Serverless computing is an execution model for the cloud in which a cloud provider dynamically allocates—and then 
-charges the user for—only the compute resources and storage needed to execute a particular piece of code. Naturally, 
-there are still servers involved, but their provisioning and maintenance are entirely taken care of by the provider. 
-The advantage of running serverless is that developers can focus on writing functional and innovative code instead of 
-creating, maintaining and improving their own servers. Furthermore, pay-per-use helps with developing new and creative 
-ideas without having to allocate servers. This empowers the strength of the ODH and will ensure the focus will lie fully 
-on the further development of components and functionality.
+### Legacy ERP system
+The original webshop was based around BaaN IV, an ERP system popular during the early nineties. During the transition 
+to a new more modern webshop, the connection with BaaN IV needed to be preserved because of the importance of the data. 
+Within BaaN IV all logistic, administrative and financial business processes are processed and maintained. But because 
+this is a legacy system, the data within BaaN IV is hard to reach and data science is second to none.
 
-### Security by design
-Security by design is an approach that seeks to make systems as free of vulnerabilities and impervious to attack as 
-possible through such measures as continuous testing, authentication safeguards and adherence to best programming 
-practices. Security is not added afterwards or as a separate asset, but it is built-in in software, systems
-development life cycle (SDLC) and developers’ minds.
+[TO BE CONTINUED]
 
-### Data integrated
-One of the strongest aspects of an ODH is the full data integrated structure. This integration involves combining data 
-from several disparate sources, which are stored using various technologies and provide a unified view of the data. 
-We strive to not lock-up our data in applications and data silo’s, but make it available and share it. This sharing of 
-data enables new insights that will be used for improvements and innovations with the platform but also the business it 
-is used in. The ODH uses a flexible data model to handle all data types without limitations.
+### Renewal of third-party licenses
+The webshop sells third-party licenses that are controlled by third-party companies. One of these companies, Adobe, has 
+an API where new licenses can be requested and existing licenses can be renewed or cancelled. Currently, the requests 
+for these licenses is done directly by the API used within the webshop and some form of auditing is limited. 
+Furthermore, the API’s are fully intertwined with each other and potential changes are near impossible.
 
-## Components
-The Operational Data Hub, hereafter “ODH”, consists of some fundamental components that combine the flexibility
-provided by the cloud platform and the strength of the code itself. These components are made to be flexible, 
-scalable and fully generic. Before explaining how all of these components are intertwined with each other to create 
-the ODH, each component will be individually described.
+[TO BE CONTINUED]
 
-### Pub/Sub
-The most important component of the ODH is Google Cloud Pub/Sub. The hub is fully built on and around this service 
-provided by the Google Cloud Platform, hereafter called “GCP”. As explained by Qwiklabs (2020), ”Google Cloud Pub/Sub 
-is a messaging service for exchanging event data among applications and services. By decoupling senders and receivers, 
-it allows for secure and highly available communication between independently written applications.” Pub/Sub can be 
-compared to Apache Kafka; a publish-subscribe based durable messaging system. This messaging system is a central hub 
-via which multiple applications communicate with each based on event-driven messages.
+### Customer support mailbox
+A webshop is only as good as it’s customer support. Currently, a mailbox is used for the customer support where 
+employees check and process incoming mails. These mails have to be manually connected to a certain order or inquiry, 
+which costs employees a lot of time. An automated system processing and connecting these mails is desirable.
 
-Pub/Sub exists of two key components: topics and subscriptions. A topic can have multiple subscriptions that each have 
-their purpose. A message is published by a publisher towards a topic where it is added to the end of the message-bus. 
-Thereafter, each subscription can process the message in their way. Some subscriptions need a function (a subscriber) 
-to retrieve the data, where some push data towards certain functions, applications or databases. Because a topic can 
-have “endless” subscriptions, the scalability is enormous and each message can be used by different processes.
+[TO BE CONTINUED]
 
-<p align="center">
-  <img src="diagrams/images/service_pubsub.png" width="400" title="Cloud Pub/Sub" alt="Cloud Pub/Sub">
-</p>
+### Data science
+Because the market for webshops is packed you have to stand out. Currently, the webshop does not have any unique selling 
+point other than a wide range of licenses and computer parts. The solution for this is data science; analyzing and 
+mapping user activity can help by expanding the business. Right now there is not any data science opportunity as the 
+data is very fragmented.
 
-As seen in the example above, Cloud Pub/Sub is the connection between different applications, functions and databases. 
-This centralized hub to navigate all data through is the strength of the ODH; all data passes through one place that 
-enables easier connections between applications and a single source of truth, hereafter called “SSOT”. This SSOT enables 
-the platform to not only provide a dynamic state of the art infrastructure but also endless possibilities for data 
-research to optimize and innovate.
+[TO BE CONTINUED]
 
-### Data catalog deployment
-Another essential component of the ODH is the data catalog deployment. This is a fully automated deployment for all 
-resources in and around the ODH based on data catalogs; “. . . a detailed inventory of all data assets in an 
-organization, designed to help data professionals quickly find the most appropriate data for any analytical or 
-business purpose” (IBM Cloud Education, 2020). Within the ODH the data catalog has two goals: to maintain a detailed 
-inventory of all data assets and to automatically deploy assets based on that information. This ensures that the 
-information added to the catalogs is always up-to-date. Because of the “endless” scalability of the ODH, the data stored 
-inside the hub can grow exponentially. To keep this in control, an extensive catalogue is needed to maintain insight 
-into the data. 
+### Current stock
+The stock of computer parts is controlled by the warehouse from third-party sellers and the sales on the webshop. The 
+manufacturer where most of the parts are from has a system that notifies the current stock of the warehouse. At the 
+moment the webshop shows the current stock, but this is done manually by employees based on the information of the 
+third-party’s selling the products. By automating this, the employees can focus on improving other areas of the business.
 
-The data catalogs are based on Project Open Data; a collection of code, tools and case studies commissioned by The 
-White House to “. . . support the implementation of policy, the creation of data governance structures, and the 
-day-to-day work of data management in the federal government” (The Federal Enterprise Data Resources, n.d.). Within 
-this project, a schema definition is defined to create a generic set of information on each asset 
-(https://vwt-digital.github.io/project-company-data.github.io/v1.1/schema/). This schema contains all fields to describe 
-datasets, but also to deploy these datasets to the cloud with the Data catalog deployment functions.
+[TO BE CONTINUED]
 
-### Backup
-When creating an infrastructure where enormous amounts of data pass through, a good data loss prevention 
-(hereafter “DLP”) program is crucial. Within the ODH we’ve integrated fully automated backup processes. These backup 
-processes use the built-in services of the Cloud platform to retrieve, process and store the data.
+### Available data
+After making sure the data is reachable a new data scientist is hired to make use of the data. But before this employee 
+can do his magic, a clear overview of the data is necessary. This to make it easier for the new employee but also to 
+help to substantiate the use of data in line with the General Data Protection Regulation (GDPR).
 
-<p align="center">
-  <img src="diagrams/images/backup_pubsub.png" width="400" title="Pub/Sub backup" alt="Pub/Sub backup">
-</p>
-
-One of the backup processes is the Pub/Sub backup, as displayed above. This process retrieves all messages stored 
-within a Pub/Sub topic and copies them towards a Google Cloud Storage, hereafter “GCS”, bucket. The Cloud Scheduler 
-triggers a Cloud Function what then starts te backup-process. By using a scheduler, this process can run automatically 
-in the background 24/7 and ensures up-to-date data. In case of data loss, the storage will always contain a history of 
-messages that can be restored at any time.
-
-### Security
-Another — perhaps the most essential — component is security. Because the ODH is a centralized hub, all data passes 
-through one point. It is crucial to have certain security policies in place to make sure the right people only get 
-access to this data. The ODH is built fully with security in mind, so there are countless ways to provide strong 
-policies. These measures include automated deletion of obsolete Service Account keys, security risk notifications 
-trough a Security Command Centre (Google Cloud, n.d.), data encrypted at rest (Google Cloud, 2020a) and in transit 
-(Google Cloud, n.b.) and daily checks for over-granted permissions. All these security measures are meant to optimize 
-safety for all data within the platform. The permissions of resources are fully provisioned by the catalogs, as 
-described in "[Data catalog deployment](#data-catalog-deployment)". This ensures there is one central place all access is 
-controlled from and contains a detailed revision history.
-
-## References
-- Google Cloud. (2020a). Encryption at Rest in Google Cloud. 
-https://cloud.google.com/security/encryption-at-rest/default-encryption/resources/encryption-whitepaper.pdf
-- Google Cloud. (2020b). Encryption in Transit in Google Cloud. 
-https://cloud.google.com/security/encryption-in-transit/resources/encryption-in-transit-whitepaper.pdf
-- Google Cloud. (n.d.). Security Command Center. https://cloud.google.com/security-command-center
-- IBM Cloud Education. (2020, April 3). Data Catalog. Retrieved August 12, 20202, from 
-https://www.ibm.com/cloud/learn/data-catalog
-- Opensource.com. (n.d.). What is open source? Retrieved July 30, 2020, from 
-https://opensource.com/resources/what-open-source
-- Qwiklabs. (2020, January 10). Introduction to Google Cloud Pub/Sub. Retrieved August 10, 2020, from 
-https://medium.com/@qwiklabs/introduction-to-google-cloud-pub-sub-fce6a31aea9
-- The Federal Enterprise Data Resources. (n.d.). Data management & governance. Retrieved August 12, 2020, from 
-https://resources.data.gov/categories/data-management-governance/
+[TO BE CONTINUED]
