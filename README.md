@@ -44,9 +44,10 @@ resources can be defined, security can be organized and data can be structured.
 
 
 ## Use cases
-To describe how the ODH can be used, a fictional software license and computer parts webshop is used. This webshop has 
-a decentralised application landscape and must innovate to get more value from their data. Below, some use cases from 
-within this webshop describe how the ODH can improve efficiency and data value based on current systems.
+To describe how the ODH can be used in different ways we’ve created some use cases which will provide handles for the 
+usage of the ODH. The use cases are created for a fictional software license and computer parts webshop. The fictional 
+webshop has a decentralised application landscape and must innovate to get more value from their data. The use cases 
+describe how the ODH can improve efficiency and data-value based on the current webshop systems.
 
 ### Legacy ERP system
 The original webshop was based around BaaN IV, an ERP system popular during the early nineties. During the transition 
