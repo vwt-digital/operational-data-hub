@@ -61,7 +61,7 @@ a part of the application landscape. To provide you with an overview of how the 
 solution, the supposed schema is defined below.
 
 <p align="center">
-  <img src="diagrams/images/legacy_erp_system.png" width="400" title="Legacy ERP system" alt="Legacy ERP system">
+  <img src="diagrams/images/legacy_erp_system.png" width="100%" title="Legacy ERP system" alt="Legacy ERP system">
 </p>
 
 As the schema shows, the solution consists of seven components divided over two objects; consume and ingest. 
