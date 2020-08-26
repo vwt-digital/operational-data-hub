@@ -74,7 +74,7 @@ message queue). But before the data is posted towards the topic, some steps have
 to work. This is a generic HTTP endpoint that can retrieve documents from an external server and store them on a 
 <a href="https://cloud.google.com/storage/docs/key-terms#buckets" target="_blank">Google Cloud Storage Bucket</a> 
 (hereafter “GCS”). For a more detailed description of how to use this awesome function, please visit the 
-<a href="https://github.com/vwt-digital/restingest" target+"_blank">Restingest repository</a>. In this case, the 
+<a href="https://github.com/vwt-digital/restingest" target="_blank">Restingest repository</a>. In this case, the 
 Restingest will request data from BaaN IV and store it inside a GCS Bucket.
 
 After the upload has finished, a <a href="https://cloud.google.com/functions/docs/calling/storage" target="_blank">Bucket trigger</a> 
