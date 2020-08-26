@@ -40,7 +40,7 @@ automated deployment of these resources. The ODH can be fully managed by creatin
 resources can be defined, security can be organized and data can be structured. 
 
 > To learn more about the automated deployment via data catalogs, visit our 
-<a href="https://github.com/vwt-digital/dcat-deploy" target="_blank">data catalog deployment repository</a>.
+<a href="https://github.com/vwt-digital/dcat-deploy" target="_blank">data-catalog deployment repository</a>.
 
 
 ## Use cases
@@ -50,12 +50,43 @@ webshop has a decentralised application landscape and must innovate to get more 
 describe how the ODH can improve efficiency and data-value based on the current webshop systems.
 
 ### Legacy ERP system
-The original webshop was based around BaaN IV, an ERP system popular during the early nineties. During the transition 
-to a new more modern webshop, the connection with BaaN IV needed to be preserved because of the importance of the data. 
-Within BaaN IV all logistic, administrative and financial business processes are processed and maintained. But because 
-this is a legacy system, the data within BaaN IV is hard to reach and data science is second to none.
+The original webshop was based around BaaN IV, an enterprise resource planning (ERP) system popular during the early 
+nineties. During the transition to a new and more modern webshop, the connection with BaaN IV needed to be preserved 
+because of the importance of the data. Within BaaN IV all logistic, administrative and financial business processes are 
+processed and maintained. But because this is a legacy system, the data within BaaN IV is hard to reach and data science 
+is second to none.
 
-[TO BE CONTINUED]
+This is where the ODH will come in. Because of the versatility of the hub, even the oldest legacy systems can still be 
+a part of the application landscape. To provide you with an overview of how the ODH will be at the centre of this 
+solution, the supposed schema is defined below.
+
+<p align="center">
+  <img src="diagrams/images/legacy_erp_system.png" width="400" title="Legacy ERP system" alt="Legacy ERP system">
+</p>
+
+As the schema shows, the solution consists of seven components divided over two objects; consume and ingest. 
+
+##### Consume
+Within the consuming part of the solution, the data will be retrieved from the server and posted towards a 
+<a href="https://cloud.google.com/pubsub/docs/overview" target="_blank">Pub/Sub topic</a> (the Google Cloud Platform 
+message queue). But before the data is posted towards the topic, some steps have to be taken. At first, an automated 
+<a href="https://cloud.google.com/scheduler" target="_blank">Cloud Scheduler</a> will tell the Restingest function to go
+to work. This is a generic HTTP endpoint that can retrieve documents from an external server and store them on a 
+<a href="https://cloud.google.com/storage/docs/key-terms#buckets" target="_blank">Google Cloud Storage Bucket</a> 
+(hereafter “GCS”). For a more detailed description of how to use this awesome function, please visit the 
+<a href="https://github.com/vwt-digital/restingest" target+"_blank">Restingest repository</a>. In this case, the 
+Restingest will request data from BaaN IV and store it inside a GCS Bucket.
+
+After the upload has finished, a <a href="https://cloud.google.com/functions/docs/calling/storage" target="_blank">Bucket trigger</a> 
+will trigger the <a href="https://github.com/vwt-digital/event-sourcing-helpers/tree/develop/functions/produce_delta_event" target="_blank">Produce delta event function</a>. 
+This function retrieves the data it triggered on and will check the difference (a delta) between the last known file in 
+the bucket. All changes will be published towards the Pub/Sub Topic as single messages.
+
+##### Ingest
+After the new data entities are published towards the Pub/Sub Topic, a <a href="https://github.com/vwt-digital/event-sourcing-consumers" target="_blank">consume function</a> 
+will retrieve these messages one at a time and inserts them into a database. In this example, a 
+<a href="https://cloud.google.com/firestore/docs" target="_blank">Firestore database</a> is used, but the function can
+be changed to any database available on the platform.
 
 ### Renewal of third-party licenses
 The webshop sells third-party licenses that are controlled by third-party companies. One of these companies, Adobe, has 
