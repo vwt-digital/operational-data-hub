@@ -56,6 +56,7 @@ because of the importance of the data. Within BaaN IV all logistic, administrati
 processed and maintained. But because this is a legacy system, the data within BaaN IV is hard to reach and data science 
 is second to none.
 
+#### Schema
 This is where the ODH will come in. Because of the versatility of the hub, even the oldest legacy systems can still be 
 a part of the application landscape. To provide you with an overview of how the ODH will be at the centre of this 
 solution, the supposed schema is defined below.
@@ -64,8 +65,23 @@ solution, the supposed schema is defined below.
   <img src="diagrams/images/legacy_erp_system.png" width="100%" title="Legacy ERP system" alt="Legacy ERP system">
 </p>
 
-As the schema shows, the solution consists of seven components divided over two objects; consume and ingest. 
+As the schema shows, the solution consists of seven components divided over two objects, consume and ingest, and the
+external BaaN IV server. 
 
+#### Components
+Below is the list of components used in this solution with references to documentation.
+
+Name | Type | Documentation
+--- | --- | ---
+Cloud Scheduler | Cloud Scheduler | https://cloud.google.com/scheduler
+Restingest | Cloud Function | https://github.com/vwt-digital/restingest
+GCS Bucket | GCS Bucket | https://cloud.google.com/storage/docs/key-terms#buckets
+Produce delta event | Cloud Function | https://github.com/vwt-digital/event-sourcing-helpers/tree/develop/functions/produce_delta_event
+Pub/Sub Topic | Pub/Sub Topic | https://cloud.google.com/pubsub/docs/overview
+Event sourcing consumer | Cloud Function | https://github.com/vwt-digital/event-sourcing-consumers
+Database | Firebase | https://cloud.google.com/firestore/docs
+
+#### Functionality
 ##### Consume
 Within the consuming part of the solution, the data will be retrieved from the server and posted towards a 
 <a href="https://cloud.google.com/pubsub/docs/overview">Pub/Sub topic</a> (the Google Cloud Platform message queue). But 
