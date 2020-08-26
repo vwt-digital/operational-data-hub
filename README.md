@@ -20,6 +20,28 @@ truth, capturing all information and business events, enabling the data-driven e
 This documentation is meant to explain what the Operational Data Hub (hereafter "ODH") is, what it can provide and how 
 it can be used.
 
+As described above, the ODH is a central hub for an all-inclusive source of truth by facilitating applications to 
+connect and exchange data. The exchange of this data is done via a so-called message queue.
+
+<p align="center">
+  <img src="diagrams/images/message_queue.png" width="400" title="Message queue" alt="Message queue">
+</p>
+
+As seen in the diagram above, functions, applications, databases and more can post messages to different queues, where 
+other resources can retrieve them. This concept empowers users to unlock more possibilities by having the data at a 
+centralised place. From here, the data can be analysed, more applications can be connected with each other without 
+creating a spider web and all infrastructure components can be managed via one single access point: the ODH.
+
+But creating a centralised place for all data is not the only strength of the ODH. In addition, the creation and 
+maintenance of this hub are fully automated and manageable through data catalogs. These are detailed inventories of all 
+data assets in an organization, designed to help data professionals quickly find the most appropriate data for any 
+analytical or business purpose. But providing the location of the data is not the only reason, it also unlocks the 
+automated deployment of these resources. The ODH can be fully managed by creating and editing these catalogs, where 
+resources can be defined, security can be organized and data can be structured. 
+
+> To learn more about the automated deployment via data catalogs, visit our 
+<a href="https://github.com/vwt-digital/dcat-deploy" target="_blank">data catalog deployment repository</a>.
+
 
 ## Use cases
 To describe how the ODH can be used, a fictional software license and computer parts webshop is used. This webshop has 
