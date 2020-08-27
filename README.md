@@ -40,7 +40,7 @@ automated deployment of these resources. The ODH can be fully managed by creatin
 resources can be defined, security can be organized and data can be structured. 
 
 > To learn more about the automated deployment via data catalogs, visit our 
-<a href="https://github.com/vwt-digital/dcat-deploy">data-catalog deployment repository</a>.
+>[data-catalog deployment repository](https://github.com/vwt-digital/dcat-deploy).
 
 
 ## Use cases
@@ -79,30 +79,29 @@ GCS Bucket | GCS Bucket | https://cloud.google.com/storage/docs/key-terms#bucket
 Produce delta event | Cloud Function | https://github.com/vwt-digital/event-sourcing-helpers/tree/develop/functions/produce_delta_event
 Pub/Sub Topic | Pub/Sub Topic | https://cloud.google.com/pubsub/docs/overview
 Event sourcing consumer | Cloud Function | https://github.com/vwt-digital/event-sourcing-consumers
-Database | Firebase | https://cloud.google.com/firestore/docs
+Database | Firestore | https://cloud.google.com/firestore/docs
 
 #### Functionality
 ##### Consume
 Within the consuming part of the solution, the data will be retrieved from the server and posted towards a 
-<a href="https://cloud.google.com/pubsub/docs/overview">Pub/Sub topic</a> (the Google Cloud Platform message queue). But 
-before the data is posted towards the topic, some steps have to be taken. At first, an automated 
-<a href="https://cloud.google.com/scheduler">Cloud Scheduler</a> will tell the Restingest function to go to work. This 
-is a generic HTTP endpoint that can retrieve documents from an external server and store them on a 
-<a href="https://cloud.google.com/storage/docs/key-terms#buckets">Google Cloud Storage Bucket</a> (hereafter “GCS”). For 
-a more detailed description of how to use this awesome function, please visit the 
-<a href="https://github.com/vwt-digital/restingest">Restingest repository</a>. In this case, the Restingest will request 
-data from BaaN IV and store it inside a GCS Bucket.
+[Pub/Sub topic](https://cloud.google.com/pubsub/docs/overview) (the Google Cloud Platform message queue). But before the 
+data is posted towards the topic, some steps have to be taken. At first, an automated 
+[Cloud Scheduler](https://cloud.google.com/scheduler) will tell the Restingest function to go to work. This is a generic
+HTTP endpoint that can retrieve documents from an external server and store them on a 
+[Google Cloud Storage Bucket](https://cloud.google.com/storage/docs/key-terms#buckets) (hereafter “GCS”). For a more 
+detailed description of how to use this awesome function, please visit the [Restingest repository](https://github.com/vwt-digital/restingest). 
+In this case, the Restingest will request data from BaaN IV and store it inside a GCS Bucket.
 
-After the upload has finished, a <a href="https://cloud.google.com/functions/docs/calling/storage">Bucket trigger</a> 
-will trigger the <a href="https://github.com/vwt-digital/event-sourcing-helpers/tree/develop/functions/produce_delta_event">Produce delta event function</a>. 
+After the upload has finished, a [Bucket trigger](https://cloud.google.com/functions/docs/calling/storage) will trigger
+the [Produce delta event function](https://github.com/vwt-digital/event-sourcing-helpers/tree/develop/functions/produce_delta_event). 
 This function retrieves the data it triggered on and will check the difference (a delta) between the last known file in 
 the bucket. All changes will be published towards the Pub/Sub Topic as single messages.
 
 ##### Ingest
-After the new data entities are published towards the Pub/Sub Topic, a <a href="https://github.com/vwt-digital/event-sourcing-consumers">consume function</a> 
+After the new data entities are published towards the Pub/Sub Topic, a [consume function](https://github.com/vwt-digital/event-sourcing-consumers) 
 will retrieve these messages one at a time and inserts them into a database. In this example, a 
-<a href="https://cloud.google.com/firestore/docs">Firestore database</a> is used, but the function can be changed to any
-database available on the platform.
+[Firestore database](https://cloud.google.com/firestore/docs) is used, but the function can be changed to any database 
+available on the platform.
 
 ### Renewal of third-party licenses
 As described before, our fictional webshop sells third-party licenses that are controlled by third-party companies. 
