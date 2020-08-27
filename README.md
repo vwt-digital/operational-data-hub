@@ -105,12 +105,69 @@ will retrieve these messages one at a time and inserts them into a database. In 
 database available on the platform.
 
 ### Renewal of third-party licenses
-The webshop sells third-party licenses that are controlled by third-party companies. One of these companies, Adobe, has 
-an API where new licenses can be requested and existing licenses can be renewed or cancelled. Currently, the requests 
-for these licenses is done directly by the API used within the webshop and some form of auditing is limited. 
-Furthermore, the API’s are fully intertwined with each other and potential changes are near impossible.
+As described before, our fictional webshop sells third-party licenses that are controlled by third-party companies. 
+One of these companies, Adobe, has an API where new licenses can be requested and existing licenses can be renewed or 
+cancelled. Currently, the requests for these licenses is done directly by the API used within the webshop and some form 
+of auditing is limited. Furthermore, the API’s are fully intertwined with each other and potential changes are near 
+impossible.
 
-[TO BE CONTINUED]
+#### Schema
+To show how the ODH can be a central place to request new and update existing licenses, we’ve created a schema showing 
+the potential infrastructure setup.
+
+<p align="center">
+  <img src="diagrams/images/renewal_licenses.png" width="400" 
+  title="Renewal of third-party licenses" alt="Renewal of third-party licenses">
+</p>
+
+Within this schema, two route-types are possible:
+1. Posting towards the external API (orange route). E.g.: requesting a new license, updating existing licenses or 
+cancelling a license;
+2. Receiving from the external API (grey route). E.g.: receiving updates for a license.
+
+#### Components
+Below is the list of components used in this solution with references to documentation.
+
+Name | Type | Documentation
+--- | --- | ---
+Client | App Engine | https://cloud.google.com/appengine/docs/the-appengine-environments
+API | App Engine | https://cloud.google.com/appengine/docs/the-appengine-environments
+Database | Firestore | https://cloud.google.com/firestore/docs
+Pub/Sub Topic | Pub/Sub Topic | https://cloud.google.com/pubsub/docs/overview
+Restingest | Cloud Function | https://github.com/vwt-digital/restingest
+Consume | Cloud Function | https://github.com/vwt-digital/event-sourcing-consumers
+
+#### Functionality
+As described, there are two routes possible: requesting or receiving data about licenses.
+
+##### Posting (orange route)
+The first flow of this implementation is posting data for licenses. Within this flow, the Client (front-end application,
+e.g. an [App Engine](https://cloud.google.com/appengine/docs/the-appengine-environments)) requests a new license or an 
+update or cancellation on an existing license. Within this example, we will request a new license. This Client-request 
+will be processed by the API and continues in two directions: at first, the database (e.g. 
+[Firestore](https://cloud.google.com/firestore/docs)) will be updated with the desired information. Here the API could 
+add data about a new, not yet existing, license. Concurrent, the API will post a message towards a 
+[Pub/Sub topic](https://cloud.google.com/pubsub/docs/overview) (the Google Cloud Platform message queue) containing the 
+request for a new license. This will be picked up by an alternative Cloud Function, in this case, the 
+[Restingest](https://github.com/vwt-digital/restingest), that will communicate with the Abobe API. Within this 
+communication, the function will post a request for a new license, where the Adobe API will respond with either 
+information about the new license or a message about a denied request. After receiving, the function posts this response
+to a Pub/Sub Topic once again. This message will be picked up by a third function thas processes it and adds the desired
+information to the database.
+
+One of the advantages of this implementation is the concurrency of the flow; after the API has posted the message 
+towards the Pub/Sub Topic, it can finish the communication with the front-end. This because the Pub/Sub flow is fully 
+disconnected from the API. The next time the API will request information about the license, it can check the database 
+whether the license is created and active or if it is still processing.
+
+##### Receiving
+Next to sending information towards the external API, receiving updates about licenses can also be implemented into the 
+ODH. As seen in the diagram, the flow from the Adobe API is identical as described with posting information towards the 
+API. In this case, the Adobe API sends updates or events towards a configured endpoint; the Restingest function. This 
+function will process the message and uses the Pub/Sub Topic to sent it towards the database. This flow can be used if 
+Adobe has updated information about licenses, or something is wrong with a license. It can send the message towards the 
+endpoint and the database will automatically update.
+
 
 ### Customer support mailbox
 A webshop is only as good as it’s customer support. Currently, a mailbox is used for the customer support where 

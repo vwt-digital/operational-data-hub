@@ -52,3 +52,22 @@ with Diagram("Legacy ERP system", graph_attr=graph_attr, show=False, filename="i
             dia_1_database = Firestore("Database")
 
             dia_1_pubsub >> Edge(label="Subscribe") >> dia_1_cons >> dia_1_database
+
+with Diagram("Renewal of third-party licenses", graph_attr=graph_attr, show=False, filename="images/renewal_licenses"):
+    dia_2_adobe = Server("Adobe API")
+
+    with Cluster("Webshop"):
+        dia_2_client = AppEngine("Client")
+        dia_2_api = AppEngine("API")
+        dia_2_db = Firestore("Database")
+
+    with Cluster("Operational Data Hub"):
+        dia_2_pubsub = PubSub("Pub/Sub Topic")
+        dia_2_func = Functions("Restingest")
+        dia_2_con = Functions("Consume")
+
+        dia_2_client >> Edge(label="HTTPS", color="orange") >> dia_2_api >> Edge(color="orange") >> dia_2_db
+        dia_2_client << dia_2_api << dia_2_db
+        dia_2_api >> Edge(color="orange") >> dia_2_pubsub >> Edge(color="orange") >> dia_2_func >> \
+            Edge(label="REST", color="orange") >> dia_2_adobe
+        dia_2_adobe >> dia_2_func >> dia_2_pubsub >> dia_2_con >> dia_2_db
