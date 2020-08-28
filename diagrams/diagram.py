@@ -71,3 +71,21 @@ with Diagram("Renewal of third-party licenses", graph_attr=graph_attr, show=Fals
         dia_2_api >> Edge(color="orange") >> dia_2_pubsub >> Edge(color="orange") >> dia_2_func >> \
             Edge(label="REST", color="orange") >> dia_2_adobe
         dia_2_adobe >> dia_2_func >> dia_2_pubsub >> dia_2_con >> dia_2_db
+
+
+with Diagram("Customer support mailbox", graph_attr=graph_attr, show=False, filename="images/mailbox"):
+    dia_3_mail = Server("Mail server")
+
+    with Cluster("Operational Data Hub"):
+        dia_3_schedule = Scheduler("Cloud Scheduler")
+        dia_3_ingest = Functions("EWS Mail Ingest")
+        dia_3_storage = Storage("GCS Bucket")
+        dia_3_pubsub = PubSub("Pub/Sub Topic")
+        dia_3_con = Functions("Consume")
+        dia_3_db = Firestore("Database")
+
+    dia_3_schedule - Edge(label="Trigger", style="dotted") - dia_3_ingest
+    dia_3_mail >> Edge(label="REST", color="black") >> dia_3_ingest >> \
+        Edge(label="Publish", color="orange") >> dia_3_pubsub
+    dia_3_ingest >> Edge(label="POST") >> dia_3_storage >> Edge(label="GET", color="orange") >> dia_3_con
+    dia_3_pubsub >> Edge(label="Subscribe", color="orange") >> dia_3_con >> Edge(color="orange") >> dia_3_db

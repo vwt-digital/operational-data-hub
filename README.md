@@ -139,7 +139,7 @@ Consume | Cloud Function | https://github.com/vwt-digital/event-sourcing-consume
 #### Functionality
 As described, there are two routes possible: requesting or receiving data about licenses.
 
-##### Posting (orange route)
+##### Posting
 The first flow of this implementation is posting data for licenses. Within this flow, the Client (front-end application,
 e.g. an [App Engine](https://cloud.google.com/appengine/docs/the-appengine-environments)) requests a new license or an 
 update or cancellation on an existing license. Within this example, we will request a new license. This Client-request 
@@ -167,13 +167,47 @@ function will process the message and uses the Pub/Sub Topic to sent it towards 
 Adobe has updated information about licenses, or something is wrong with a license. It can send the message towards the 
 endpoint and the database will automatically update.
 
-
 ### Customer support mailbox
-A webshop is only as good as it’s customer support. Currently, a mailbox is used for the customer support where 
-employees check and process incoming mails. These mails have to be manually connected to a certain order or inquiry, 
-which costs employees a lot of time. An automated system processing and connecting these mails is desirable.
+A webshop is only as good as it’s customer support. Currently, an Outlook mailbox is where employees communicate with 
+customers. Within this mailbox, these mails have to be manually connected to a certain order or inquiry, which costs 
+employees a lot of time. An automated system processing and connecting these mails would certainly improve efficiency.
 
-[TO BE CONTINUED]
+#### Schema
+The ODH can not only help to connect the mailbox with the other applications, but it can also provide certain amounts 
+of automation.
+
+<p align="center">
+  <img src="diagrams/images/mailbox.png" width="100%" 
+  title="Customer support mailbox" alt="Customer support mailbox">
+</p>
+
+As seen in the diagram, the whole mail process is fully automated by a combination of a mail-ingest and a scheduler.
+
+#### Components
+Below is the list of components used in this solution with references to documentation.
+
+Name | Type | Documentation
+--- | --- | ---
+Cloud Scheduler | Cloud Scheduler | https://cloud.google.com/scheduler
+EWS Mail Ingest | Cloud Function | https://github.com/vwt-digital/ews-mail-ingest
+GCS Bucket | GCS Bucket | https://cloud.google.com/storage/docs/key-terms#buckets
+Pub/Sub Topic | Pub/Sub Topic | https://cloud.google.com/pubsub/docs/overview
+Consume | Cloud Function | https://github.com/vwt-digital/event-sourcing-consumers
+Database | Firestore | https://cloud.google.com/firestore/docs
+
+#### Functionality
+The implementation works fully automated as it is started by a [Cloud Scheduler](https://cloud.google.com/scheduler). 
+This scheduler can run multiple times within the hour, to keep unloading the mailbox. The 
+[EWS Mail Ingest](https://github.com/vwt-digital/ews-mail-ingest) will pull all emails from the mailbox and uploads them
+into a [GCS Bucket](https://cloud.google.com/storage/docs/key-terms#buckets). After uploading it will publish a message 
+towards the [Pub/Sub Topic](https://cloud.google.com/pubsub/docs/overview) containing all meta-data and references 
+towards the uploaded files.
+
+After a [consume function](https://github.com/vwt-digital/event-sourcing-consumers) receives the message, it will 
+request the necessary files from the [GCS Bucket](https://cloud.google.com/storage/docs/key-terms#buckets) where the 
+files were initially uploaded towards. Hereafter it can process the messages individually and upload this data into a
+[database](https://cloud.google.com/firestore/docs). This can, for instance, be the connection between the received
+messages and certain order within the Webshop database. 
 
 ### Data science
 Because the market for webshops is packed you have to stand out. Currently, the webshop does not have any unique selling 
