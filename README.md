@@ -237,7 +237,42 @@ point other than a wide range of licenses and computer parts. The solution for t
 mapping user activity can help by expanding the business. Right now there is not any data science opportunity as the 
 data is very fragmented.
 
-[TO BE CONTINUED]
+#### Architecture
+Unlocking a data science pattern within your organisation is not something that is done via a single method. The 
+infrastructure below is one example where the ODH is the centre of the data and the dataflow.
+
+<p align="center">
+  <img src="diagrams/images/data_science.png" width="100%" title="Data Science" alt="Data Science">
+</p>
+
+#### Functionality
+The starting point of the data science flow is the [Pub/Sub instance](https://cloud.google.com/pubsub/docs/overview). 
+Here, as shown and described in the use cases and documentation before, all data is passed through. So this hub of 
+information is the perfect starting point. Within this example, we’re using [Dataflow](https://cloud.google.com/dataflow) 
+— a fully managed streaming analytics service — to extract, transform and load the data and move it through different 
+analysing tools. These analytical tools can practise different research methods to find new insights from the data. In 
+this example, the tools [AI Platform](https://cloud.google.com/ai-platform), [BigQuery](https://cloud.google.com/bigquery) 
+and a [Firestore](https://cloud.google.com/firestore/docs) database form a process of analytical operations that form a 
+recurrent process until the intended result has been achieved.
+
+When this result is accomplished, the data can be exported from the BigQuery datasets towards Pub/Sub via an Ingest 
+function. After moving this data towards a database, the webshop can learn and implement the research results.
+
+#### Components
+Below is the list of components used in this solution with references to documentation.
+
+Name | Type | Documentation
+--- | --- | ---
+Pub/Sub | Pub/Sub |https://cloud.google.com/pubsub/docs/overview
+Dataflow | Dataflow | https://cloud.google.com/dataflow
+Database | Firestore | https://cloud.google.com/firestore/docs
+AI Platform | AI Platform | https://cloud.google.com/ai-platform
+BigQuery | BigQuery | https://cloud.google.com/bigquery
+Backfill/reprocess | Dataflow | https://cloud.google.com/dataflow
+Ingest | Cloud Function | https://github.com/vwt-digital/event-sourcing-helpers
+API | App Engine | https://cloud.google.com/appengine/docs/the-appengine-environments
+Client | App Engine | https://cloud.google.com/appengine/docs/the-appengine-environments
+
 
 
 ### Current stock
