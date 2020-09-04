@@ -1,4 +1,5 @@
 # flake8: noqa
+from architecture import current_stock
 from architecture import data_science
 from architecture import legacy_erp
 from architecture import mailbox

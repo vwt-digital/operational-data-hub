@@ -214,8 +214,8 @@ towards the uploaded files.
 
 After a [consume function](https://github.com/vwt-digital/event-sourcing-consumers) receives the message, it will 
 request the necessary files from the [GCS Bucket](https://cloud.google.com/storage/docs/key-terms#buckets) where the 
-files were initially uploaded to. Hereafter it can process the messages individually and upload this data into a [
-Firebase](https://cloud.google.com/firestore/docs) database. This can, for instance, be the connection between the 
+files were initially uploaded to. Hereafter it can process the messages individually and upload this data into a 
+[Firestore](https://cloud.google.com/firestore/docs) database. This can, for instance, be the connection between the 
 received messages and certain order within the Webshop database.
 
 #### Components
@@ -274,15 +274,39 @@ API | App Engine | https://cloud.google.com/appengine/docs/the-appengine-environ
 Client | App Engine | https://cloud.google.com/appengine/docs/the-appengine-environments
 
 
-
 ### Current stock
 The stock of computer parts is controlled by the warehouse from third-party sellers and the sales on the webshop. The 
 manufacturer where most of the parts are from has a system that notifies the current stock of the warehouse. At the 
 moment the webshop shows the current stock, but this is done manually by employees based on the information of the 
 third-party’s selling the products. By automating this, the employees can focus on improving other areas of the business.
 
+#### Architecture
+Receiving data from external servers and processing them within the ODH is one of its key components. As shown in the 
+diagram below, the flow consists of three key parts; the ingest, core and consume of the ODH. These form the base of 
+this flow and make sure data is saved within the hub.
 
-[TO BE CONTINUED]
+<p align="center">
+  <img src="diagrams/images/current_stock.png" width="100%" title="Current Stock" alt="Current Stock">
+</p>
+
+#### Functionality
+The most crucial part of this architecture is the [Restingest](https://github.com/vwt-digital/restingest) function. This 
+function will be the entrance towards the ODH and makes sure external data will be ingested into the ODH. After the 
+function has ingested the data into the hub, a [consume function](https://github.com/vwt-digital/event-sourcing-helpers) 
+will save the data into the database of the webshop, that in this case is a [Firestore](https://cloud.google.com/firestore/docs) 
+database. This ensures that the visitor of the webshop always has the most up-to-date information on product stock.
+
+#### Components
+Below is the list of components used in both solutions with references to documentation.
+
+Name | Type | Documentation
+--- | --- | ---
+Client | App Engine | https://cloud.google.com/appengine/docs/the-appengine-environments
+API | App Engine | https://cloud.google.com/appengine/docs/the-appengine-environments
+Database | Firestore | https://cloud.google.com/firestore/docs
+Pub/Sub Topic | Pub/Sub Topic | https://cloud.google.com/pubsub/docs/overview
+Restingest | Cloud Function | https://github.com/vwt-digital/restingest
+Consume | Cloud Function | https://github.com/vwt-digital/event-sourcing-consumers
 
 
 ### Available data
