@@ -314,4 +314,41 @@ After making sure the data is reachable a new data scientist is hired to make us
 can do his magic, a clear overview of the data is necessary. This to make it easier for the new employee but also to 
 help to substantiate the use of data in line with the General Data Protection Regulation (GDPR).
 
-[TO BE CONTINUED]
+#### Architecture
+To make sure a clear overview of all data within the company is easily maintained, the ODH can help by providing a 
+single access point and a data structure that is extremely diverse; the data catalogs. As shown below, this architecture 
+is a combination of a tremendous flow and excellent data framework.
+
+<p align="center">
+  <img src="diagrams/images/available_data.png" width="100%" title="Available Data" alt="Available Data">
+</p>
+
+#### Functionality
+The core of making data insightful lies within a strong data framework and a powerful visualiser. By using data catalogs, 
+it is easy to create a vastly rich landscape of data and with using [CKAN](https://ckan.org/) — a powerful data management 
+system — we keep it transparent of its contents. Logically, this is the starting point of creating the data overview. As 
+described, the ODH is a fully automated platform, and using these catalogs is nothing different. These are maintained 
+within a [GitHub repository](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-repositories), 
+and with each change, a [Google Cloud Build Trigger](https://cloud.google.com/cloud-build/docs/automating-builds/create-manage-triggers) 
+will make sure this will be automatically implemented.
+
+After these changes have been made, a [Google Cloud Build](https://cloud.google.com/cloud-build/docs/overview) will post 
+the data catalog on a [Pub/Sub Topic](https://cloud.google.com/pubsub/docs/overview). Hereafter, the 
+[Consume Catalog](https://github.com/vwt-digital/ckan-control/tree/develop/functions/consume-catalog) function will add 
+the catalog towards a [PostgreSQL database](https://cloud.google.com/sql/docs/features#postgres) for the 
+[CKAN Virtual Machine](https://github.com/vwt-digital/ckan) to communicate with the user requesting the information. 
+Eventually, you have an Open Source data portal platform containing all data catalogs originating from the GitHub 
+repositories, that consist of up-do-date information of the platform as described within the 
+“[Automation](#automation)”-chapter.
+
+#### Components
+Below is the list of components used in both solutions with references to documentation.
+
+Name | Type | Documentation
+--- | --- | ---
+GitHub repo | GitHub Repository | https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-repositories
+Cloud Build | Cloud Build | https://cloud.google.com/cloud-build/docs/overview
+Pub/Sub Topic | Pub/Sub Topic | https://cloud.google.com/pubsub/docs/overview
+Consume Catalog | Cloud Function | https://github.com/vwt-digital/ckan-control/tree/develop/functions/consume-catalog
+PostgreSQL | PostgreSQL | https://cloud.google.com/sql/docs/features#postgres
+CKAN VM | Virtual Machine | https://github.com/vwt-digital/ckan
