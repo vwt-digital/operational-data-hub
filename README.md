@@ -32,15 +32,15 @@ connect and exchange data. The exchange of this data is done via a so-called mes
 
 As seen in the diagram above, functions, applications, databases and more can post messages to different queues, where 
 other resources can retrieve them. This concept empowers users to unlock more possibilities by having the data at a 
-centralised place. From here, the data can be analysed, more applications can be connected with each other without 
-creating a spider web and all infrastructure components can be managed via one single access point: the ODH.
+centralised place. From here, the data can be analysed, more applications can be connected without creating a 
+spaghetti-like IT landscape and all infrastructure components connect via one single access point: the ODH.
 
 ### Pub/Sub
 Within the ODH, [Cloud Pub/Sub](https://cloud.google.com/pubsub/docs/overview) is used as the message queue. This 
 phenomenon consists of two key components: Topics and Subscriptions. Topics are named resources to which messages are 
 sent by publishers, where subscriptions are named resources representing the stream of messages from a specific topic to 
 be delivered to the subscribing application. To elaborate: a topic can have multiple subscriptions, but a subscription 
-can only be assigned to one topic. Each subscription can be subscribed to by multiple applications, as seen in the 
+can only be assigned to one topic. Each topic can be subscribed to by multiple applications, as seen in the 
 example below.
 
 <p align="center">
@@ -48,7 +48,7 @@ example below.
 </p>
 
 ### Automation
-But creating a centralised place for all data is not the only strength of the ODH. In addition, the creation and 
+But creating a centralised place for all data is not the only strength of the ODH. The creation and 
 maintenance of this hub are fully automated and manageable through data catalogs. These are detailed inventories of all 
 data assets in an organization, designed to help data professionals quickly find the most appropriate data for any 
 analytical or business purpose. But providing the location of the data is not the only reason, it also unlocks the 
@@ -81,7 +81,7 @@ solution, the supposed schema is defined below.
   <img src="diagrams/images/legacy_erp_system.png" width="100%" title="Legacy ERP system" alt="Legacy ERP system">
 </p>
 
-As the schema shows, the solution consists of seven components divided over two objects, ingest and consume, and the 
+As the schema shows, the solution consists of seven components divided over two functionalities, ingest and consume, and the 
 external NaaB IV server.
 
 #### Functionality
@@ -99,7 +99,7 @@ NaaB IV and store it inside a GCS Bucket.
 After the upload has finished, a [Bucket trigger](https://cloud.google.com/functions/docs/calling/storage) will trigger 
 the [Produce delta event function](https://github.com/vwt-digital/event-sourcing-helpers/tree/develop/functions/produce_delta_event). 
 This function retrieves the data it triggered on and will check the difference (a delta) between the last known file in 
-the bucket. All changes will be published towards the Pub/Sub Topic as single messages.
+the bucket. All changes will be published towards the Pub/Sub Topic as messages.
 
 ##### Consume
 After the new data entities are published towards the Pub/Sub Topic, a [consume function](https://github.com/vwt-digital/event-sourcing-consumers) 
@@ -125,7 +125,7 @@ Database | Firestore | https://cloud.google.com/firestore/docs
 As described before, our fictional webshop sells third-party licenses that are controlled by third-party companies. One 
 of these companies, Abode, has an API where new licenses can be requested and existing licenses can be renewed or 
 cancelled. Currently, the requests for these licenses is done directly by the API used within the webshop and some form 
-of auditing is limited. Furthermore, the API’s are fully intertwined with each other and potential changes are near 
+of auditing is limited. Furthermore, the API’s are fully intertwined with each other and potential changes are near to 
 impossible.
 
 #### Architecture
@@ -171,7 +171,7 @@ whether the license is created and active or if it is still processing.
 Next to sending information towards the external API, receiving updates about licenses can also be implemented into the 
 ODH. In this case, the Abode API sends updates or events towards a configured endpoint; the 
 [Restingest](https://github.com/vwt-digital/restingest) function. This function will process the message and uses the 
-[Pub/Sub Topic](https://cloud.google.com/pubsub/docs/overview) to sent it towards the database. This flow can be used if 
+[Pub/Sub Topic](https://cloud.google.com/pubsub/docs/overview) to send it towards the database. This flow can be used if 
 Abode has updated information about licenses, or something is wrong with a license. It can send the message towards the 
 endpoint and the database will automatically update.
 
@@ -290,9 +290,12 @@ this flow and make sure data is saved within the hub.
 </p>
 
 #### Functionality
+##### Ingest
 The most crucial part of this architecture is the [Restingest](https://github.com/vwt-digital/restingest) function. This 
-function will be the entrance towards the ODH and makes sure external data will be ingested into the ODH. After the 
-function has ingested the data into the hub, a [consume function](https://github.com/vwt-digital/event-sourcing-helpers) 
+function will be the entrance towards the ODH and makes sure external data will be ingested into the ODH.
+
+##### Consume
+After the function has ingested the data into the hub, a [consume function](https://github.com/vwt-digital/event-sourcing-helpers) 
 will save the data into the database of the webshop, that in this case is a [Firestore](https://cloud.google.com/firestore/docs) 
 database. This ensures that the visitor of the webshop always has the most up-to-date information on product stock.
 
@@ -326,19 +329,22 @@ is a combination of a tremendous flow and excellent data framework.
 #### Functionality
 The core of making data insightful lies within a strong data framework and a powerful visualiser. By using data catalogs, 
 it is easy to create a vastly rich landscape of data and with using [CKAN](https://ckan.org/) — a powerful data management 
-system — we keep it transparent of its contents. Logically, this is the starting point of creating the data overview. As 
-described, the ODH is a fully automated platform, and using these catalogs is nothing different. These are maintained 
+system — we keep it transparent of its contents. Logically, this is the starting point of creating the data overview.
+
+##### Ingest
+As described, the ODH is a fully automated platform, and using these catalogs is nothing different. These are maintained 
 within a [GitHub repository](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-repositories), 
 and with each change, a [Google Cloud Build Trigger](https://cloud.google.com/cloud-build/docs/automating-builds/create-manage-triggers) 
-will make sure this will be automatically implemented.
+will make sure this will be automatically implemented. After these changes have been made, a 
+[Google Cloud Build](https://cloud.google.com/cloud-build/docs/overview) will post the data catalog on a 
+[Pub/Sub Topic](https://cloud.google.com/pubsub/docs/overview).
 
-After these changes have been made, a [Google Cloud Build](https://cloud.google.com/cloud-build/docs/overview) will post 
-the data catalog on a [Pub/Sub Topic](https://cloud.google.com/pubsub/docs/overview). Hereafter, the 
-[Consume Catalog](https://github.com/vwt-digital/ckan-control/tree/develop/functions/consume-catalog) function will add 
-the catalog towards a [PostgreSQL database](https://cloud.google.com/sql/docs/features#postgres) for the 
-[CKAN Virtual Machine](https://github.com/vwt-digital/ckan) to communicate with the user requesting the information. 
+##### Consume
+Hereafter, the [Consume Catalog](https://github.com/vwt-digital/ckan-control/tree/develop/functions/consume-catalog) 
+function will add the catalog towards a [PostgreSQL database](https://cloud.google.com/sql/docs/features#postgres) for 
+the [CKAN Virtual Machine](https://github.com/vwt-digital/ckan) to communicate with the user requesting the information. 
 Eventually, you have an Open Source data portal platform containing all data catalogs originating from the GitHub 
-repositories, that consist of up-do-date information of the platform as described within the 
+repositories, that consist of up-to-date information of the platform as described within the 
 “[Automation](#automation)”-chapter.
 
 #### Components
