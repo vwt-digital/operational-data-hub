@@ -17,6 +17,7 @@ truth, capturing all information and business events, enabling the data-driven e
     4. [Data science](#data-science)
     5. [Current stock](#current-stock)
     6. [Available data](#available-data)
+3. [Patterns](#patterns)
 
 ## Introduction
 This documentation is meant to explain what the Operational Data Hub (hereafter "ODH") is, what it can provide and how 
@@ -358,3 +359,45 @@ Pub/Sub Topic | Pub/Sub Topic | https://cloud.google.com/pubsub/docs/overview
 Consume Catalog | Cloud Function | https://github.com/vwt-digital/ckan-control/tree/develop/functions/consume-catalog
 PostgreSQL | PostgreSQL | https://cloud.google.com/sql/docs/features#postgres
 CKAN VM | Virtual Machine | https://github.com/vwt-digital/ckan
+
+
+## Patterns
+As you’ve seen in almost all use cases, the ODH contains two very important patterns: ingest and consume. The 
+ingest-pattern is used — as the name suggests — to ingest data into the ODH and the consume-pattern is used to retrieve 
+data from the ODH. These two concepts cover almost every aspect of the diversity within the hub.
+
+### Event to state (Ingest)
+Data ingestion is the transportation of data from assorted sources to a storage medium where it can be accessed, used, 
+and analyzed by an organization. Within the ODH, the ingest pattern is used to transform event data into state. To 
+explain this more clearly, we take a look at the diagram below.
+
+<p align="center">
+  <img src="diagrams/images/state_diagram.png" width="100%" title="State Diagram" alt="State Diagram">
+</p>
+
+This diagram shows a simple state flow. Here, the black lines are describing events and the blue boxes are states. As 
+you can see, the state itself is something that is always existing, but its value changes. This on the contrary to the 
+events that only exist at a certain moment and then disappear. These events only trigger a state change as such. In the 
+example above, the payment state changes from “unpaid” to “paid” as the event “paying” is completed.
+
+When we take a look at the ingestion of data into the ODH, we can see some similarities with the diagram above. As seen 
+in the use case “[Available Data](#available-data)”, a change in the data catalogs trigger the ingest function. This 
+change will be transformed into a state, what in this case the updated data catalog is. The state will then be ingested 
+into the ODH. This also counts for the “[Renewal of third-party licenses](#renewal-of-third-party-licenses)” use case. 
+Here both the posting and receiving architectures depend on an event to trigger the functionality to start. Where the 
+client sends a request towards the API that triggers the start, the Abode API sens a request to the Restingest to make 
+the flow move.
+
+### CQRS query model (consume)
+To unlock the ODH’s key strength — being a central data hub that facilitates all applications to connect and exchange 
+data — the data within the hub has to be communicated towards the connected applications. Within the ODH this is done 
+via a Query Model defined by the CQRS pattern from Martin Fowler. Within this pattern, he describes that communicating 
+with a database is divided into two parts; the Query Model and the Command Model.
+
+<p align="center">
+  <img src="diagrams/images/cqrs_diagram.png" width="400px" title="CQRS Diagram" alt="CQRS Diagram">
+</p>
+
+The Query Model, as seen in the diagram above, is used to provide the service interfaces with data. By separating the 
+single integration point it allows you to separate the load from reads and writes to scale each independently. This is a 
+massive performance improvement relative to the standard “Create, read, update and delete” (CRUD) model.
