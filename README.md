@@ -145,7 +145,7 @@ a license;
 
 ###### Posting
 <p align="center">
-  <img src="diagrams/images/renewal_licenses_posting.png" width="400" 
+  <img src="diagrams/images/renewal_licenses_posting.png" width="100%" 
   title="Posting third-party license data" alt="Posting third-party license data">
 </p>
 
@@ -244,7 +244,7 @@ Unlocking a data science pattern within your organisation is not something that 
 infrastructure below is one example where the ODH is the centre of the data and the dataflow.
 
 <p align="center">
-  <img src="diagrams/images/data_science.png" width="100%" title="Data Science" alt="Data Science">
+  <img src="diagrams/images/data_science.png" width="400" title="Data Science" alt="Data Science">
 </p>
 
 #### Functionality
