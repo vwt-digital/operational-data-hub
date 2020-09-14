@@ -156,43 +156,34 @@ a license;
 </p>
 
 #### Functionality
-As described, there are two routes possible: posting or receiving data about licenses.
+As described, there are two routes possible: posting or receiving data about licenses. As seen within the diagrams, both 
+flows are nearly identical, where the only difference lies within the start and endpoints. When posting data, the
+webshop is the initiator and the Abode API the receiver. When receiving data, the Abode API is the initiator and the 
+webshop the receiver. Below, we described this flow according to the posting of third-part license data.
 
-##### Posting
-The first flow of this implementation is posting data for licenses. Within this flow, the Client (front-end application, 
-e.g. an [App Engine](https://cloud.google.com/appengine/docs/the-appengine-environments)) requests a new license or an 
-update or cancellation on an existing license. Within this example, we will request a new license. This Client-request 
-will be processed by the API and continues in two directions: at first, the database (e.g. [Firestore](https://cloud.google.com/firestore/docs)) 
-will be updated with the desired information. Here the API could add data about a new, not yet existing, license. 
-Concurrent, the API will post a message towards a [Pub/Sub topic](https://cloud.google.com/pubsub/docs/overview) (the 
-Google Cloud Platform message queue) containing the request for a new license. This will be picked up by an alternative 
-consume Cloud Function that will communicate with the Abode API. Within this communication, the function will post a 
-request for a new license, where the Abode API will respond with either information about the new license or a message 
-about a denied request.
+##### Ingest
+Within the posting of data, the webshop requests a new license or an update or cancellation on an existing license. 
+Within this example, we will request a new license. The user asks this to the webshop who in turn passes this on via a 
+HTTP-request towards a [Restingest endpoint](https://github.com/vwt-digital/restingest). As described within the use 
+case before, the Restingest works in combination with two other components; a [GCS Bucket](https://cloud.google.com/storage/docs/key-terms#buckets) 
+and a [Produce Delta Event function](https://github.com/vwt-digital/event-sourcing-helpers/tree/develop/functions/produce_delta_event)
+(hereafter “PDE”). This because the Restingest only saves the requested content towards a bucket. When saved, the PDE 
+Function will receive the request and post it towards the [Pub/Sub Topic](https://cloud.google.com/pubsub/docs/overview).
 
-One of the advantages of this implementation is the concurrency of the flow; after the API has posted the message 
-towards the Pub/Sub Topic, it can finish the communication with the front-end. This because the Pub/Sub flow is fully 
-disconnected from the API. The next time the API will request information about the license, it can check the database 
-whether the license is created and active or if it is still processing.
-
-##### Receiving
-Next to sending information towards the external API, receiving updates about licenses can also be implemented into the 
-ODH. In this case, the Abode API sends updates or events towards a configured endpoint; the 
-[Restingest](https://github.com/vwt-digital/restingest) function. This function will process the message and uses the 
-[Pub/Sub Topic](https://cloud.google.com/pubsub/docs/overview) to send it towards the database. This flow can be used if 
-Abode has updated information about licenses, or something is wrong with a license. It can send the message towards the 
-endpoint and the database will automatically update.
+##### Consume
+This will then be picked up by an alternative [Consume Cloud Function](https://github.com/vwt-digital/event-sourcing-consumers)
+that will communicate with the Abode API. Within this communication, the function will post a request for a new license,
+where the Abode API will respond with either information about the new license or a message about a denied request.
 
 #### Components
 Below is the list of components used in both solutions with references to documentation.
 
 Name | Type | Documentation
 --- | --- | ---
-Client | App Engine | https://cloud.google.com/appengine/docs/the-appengine-environments
-API | App Engine | https://cloud.google.com/appengine/docs/the-appengine-environments
-Database | Firestore | https://cloud.google.com/firestore/docs
-Pub/Sub Topic | Pub/Sub Topic | https://cloud.google.com/pubsub/docs/overview
 Restingest | Cloud Function | https://github.com/vwt-digital/restingest
+GCS Bucket | GCS Bucket | https://cloud.google.com/storage/docs/key-terms#buckets
+Produce delta event | Cloud Function | https://github.com/vwt-digital/event-sourcing-helpers/tree/develop/functions/produce_delta_event
+Pub/Sub Topic | Pub/Sub Topic | https://cloud.google.com/pubsub/docs/overview
 Consume | Cloud Function | https://github.com/vwt-digital/event-sourcing-consumers
 
 
@@ -213,6 +204,7 @@ automation.
 As seen in the diagram, the whole mail process is fully automated by a combination of a mail-ingest and a scheduler.
 
 #### Functionality
+##### Ingest
 The implementation works fully automated as it is started by a [Cloud Scheduler](https://cloud.google.com/scheduler). 
 This scheduler can run multiple times within the hour, to keep unloading the mailbox. The 
 [EWS Mail Ingest](https://github.com/vwt-digital/ews-mail-ingest) pulls all emails from the mailbox and uploads them 
@@ -220,6 +212,7 @@ into a [GCS Bucket](https://cloud.google.com/storage/docs/key-terms#buckets). Af
 towards the [Pub/Sub Topic](https://cloud.google.com/pubsub/docs/overview) containing all meta-data and references 
 towards the uploaded files.
 
+##### Consume
 After a [consume function](https://github.com/vwt-digital/event-sourcing-consumers) receives the message, it will 
 request the necessary files from the [GCS Bucket](https://cloud.google.com/storage/docs/key-terms#buckets) where the 
 files were initially uploaded to. Hereafter it can process the messages individually and upload this data into a 
@@ -237,6 +230,7 @@ GCS Bucket | GCS Bucket | https://cloud.google.com/storage/docs/key-terms#bucket
 Pub/Sub Topic | Pub/Sub Topic | https://cloud.google.com/pubsub/docs/overview
 Consume | Cloud Function | https://github.com/vwt-digital/event-sourcing-consumers
 Database | Firestore | https://cloud.google.com/firestore/docs
+API | App Engine | https://cloud.google.com/appengine/docs/the-appengine-environments
 
 
 ### 4. Data science
@@ -254,6 +248,7 @@ infrastructure below is one example where the ODH is the centre of the data and 
 </p>
 
 #### Functionality
+##### Consume
 The starting point of the data science flow is the [Pub/Sub instance](https://cloud.google.com/pubsub/docs/overview). 
 Here, as shown and described in the use cases and documentation before, all data is passed through. So this hub of 
 information is the perfect starting point. Within this example, we’re using [Dataflow](https://cloud.google.com/dataflow) 
@@ -263,6 +258,7 @@ this example, the tools [AI Platform](https://cloud.google.com/ai-platform), [Bi
 and a [Firestore](https://cloud.google.com/firestore/docs) database form a process of analytical operations that form a 
 recurrent process until the intended result has been achieved.
 
+##### Ingest
 When this result is accomplished, the data can be exported from the BigQuery datasets towards Pub/Sub via an Ingest 
 function. After moving this data towards a database, the webshop can learn and implement the research results.
 
@@ -278,8 +274,6 @@ AI Platform | AI Platform | https://cloud.google.com/ai-platform
 BigQuery | BigQuery | https://cloud.google.com/bigquery
 Backfill/reprocess | Dataflow | https://cloud.google.com/dataflow
 Ingest | Cloud Function | https://github.com/vwt-digital/event-sourcing-helpers
-API | App Engine | https://cloud.google.com/appengine/docs/the-appengine-environments
-Client | App Engine | https://cloud.google.com/appengine/docs/the-appengine-environments
 
 
 ### 5. Current stock
@@ -290,8 +284,8 @@ third-party’s selling the products. By automating this, the employees can focu
 
 #### Architecture
 Receiving data from external servers and processing them within the ODH is one of its key components. As shown in the 
-diagram below, the flow consists of three key parts; the ingest, core and consume of the ODH. These form the base of 
-this flow and make sure data is saved within the hub.
+diagram below, the flow consists of three key parts; the ingest, ODH and consume of the ODH. These form the base of this 
+flow and make sure data is saved within the hub.
 
 <p align="center">
   <img src="diagrams/images/current_stock.png" width="100%" title="Current Stock" alt="Current Stock">
@@ -299,25 +293,30 @@ this flow and make sure data is saved within the hub.
 
 #### Functionality
 ##### Ingest
-The most crucial part of this architecture is the [Restingest](https://github.com/vwt-digital/restingest) function. This 
-function will be the entrance towards the ODH and makes sure external data will be ingested into the ODH.
+The most crucial part of this architecture is the [Restingest function](https://github.com/vwt-digital/restingest). This 
+function will be the entrance towards the ODH and makes sure external data will be ingested into the ODH. As described 
+before, it posts the received data towards a [GCS Bucket](https://cloud.google.com/storage/docs/key-terms#buckets) where 
+the [Produce Delta Event Function](https://github.com/vwt-digital/event-sourcing-helpers/tree/develop/functions/produce_delta_event) 
+will post this data towards the [Pub/Sub Topic](https://cloud.google.com/pubsub/docs/overview). Within this example, 
+multiple third-party API’s have information to share. And because these third-party companies all sell different 
+products, we use multiple Pub/Sub Topics to communicate the products.
 
 ##### Consume
 After the function has ingested the data into the hub, a [consume function](https://github.com/vwt-digital/event-sourcing-helpers) 
-will save the data into the database of the webshop, that in this case is a [Firestore](https://cloud.google.com/firestore/docs) 
-database. This ensures that the visitor of the webshop always has the most up-to-date information on product stock.
+will save the data into the database of the webshop, that in this case is a Firestore database. This ensures that the 
+visitor of the webshop always has the most up-to-date information on product stock.
 
 #### Components
 Below is the list of components used in both solutions with references to documentation.
 
 Name | Type | Documentation
 --- | --- | ---
-Client | App Engine | https://cloud.google.com/appengine/docs/the-appengine-environments
-API | App Engine | https://cloud.google.com/appengine/docs/the-appengine-environments
-Database | Firestore | https://cloud.google.com/firestore/docs
-Pub/Sub Topic | Pub/Sub Topic | https://cloud.google.com/pubsub/docs/overview
 Restingest | Cloud Function | https://github.com/vwt-digital/restingest
+GCS Bucket | GCS Bucket | https://cloud.google.com/storage/docs/key-terms#buckets
+Produce delta event | Cloud Function | https://github.com/vwt-digital/event-sourcing-helpers/tree/develop/functions/produce_delta_event
+Pub/Sub Topic | Pub/Sub Topic | https://cloud.google.com/pubsub/docs/overview
 Consume | Cloud Function | https://github.com/vwt-digital/event-sourcing-consumers
+API | App Engine | https://cloud.google.com/appengine/docs/the-appengine-environments
 
 
 ### 6. Available data
