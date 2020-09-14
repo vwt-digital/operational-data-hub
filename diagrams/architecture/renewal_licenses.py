@@ -1,10 +1,11 @@
 from diagrams import Cluster, Diagram, Edge
 
 from diagrams.gcp.analytics import PubSub
-from diagrams.gcp.compute import AppEngine, Functions
-from diagrams.gcp.database import Firestore
+from diagrams.gcp.compute import Functions
+from diagrams.gcp.storage import Storage
 
 from diagrams.onprem.compute import Server
+from diagrams.onprem.client import Client
 
 graph_attr = {
     "bgcolor": "transparent",
@@ -14,46 +15,50 @@ graph_attr = {
 with Diagram(
         "Posting third-party license data", graph_attr=graph_attr, show=False,
         filename="images/renewal_licenses_posting"):
+    webshop_1 = Client("Webshop")
     server_1_1 = Server("Abode API")
 
-    with Cluster("Webshop"):
-        with Cluster("Ingest"):
-            appengine_1_1 = AppEngine("Client")
-            appengine_1_2 = AppEngine("API")
-            firestore_1_1 = Firestore("Database")
+    with Cluster("Operational Data Hub Platform"):
+        with Cluster("Operational Data Hub"):
+            with Cluster("Pub/Sub Topic"):
+                pubsub_1_1 = PubSub("Subscription")
 
-    with Cluster("Operational Data Hub"):
-        with Cluster("Core"):
-            pubsub_1_1 = PubSub("Pub/Sub Topic")
+        with Cluster("Ingest Project"):
+            function_1_1 = Functions("Restingest")
+            function_1_2 = Functions("Produce delta event")
+            storage_1_1 = Storage("GCS Bucket")
 
-        with Cluster("Consume"):
-            function_1_1 = Functions("Consume")
+            function_1_1 >> storage_1_1
+            storage_1_1 - Edge(label="Bucket Trigger", style="dashed") - function_1_2 >> Edge(label="Publish") >> pubsub_1_1
 
-        appengine_1_1 >> Edge(label="HTTPS") >> appengine_1_2 >> firestore_1_1
-        appengine_1_2 >> pubsub_1_1 >> function_1_1 >> \
-            Edge(label="REST") >> server_1_1
+        with Cluster("Consume Project"):
+            function_1_3 = Functions("Consume")
+
+    webshop_1 >> Edge(label="POST", color="black") >> function_1_1
+    pubsub_1_1 >> Edge(label="Subscribe") >> function_1_3 >> Edge(label="POST", color="black") >> server_1_1
 
 
 with Diagram(
         "Receive third-party license data", graph_attr=graph_attr, show=False,
         filename="images/renewal_licenses_receiving"):
+    webshop_2 = Client("Webshop")
     server_2_1 = Server("Abode API")
 
-    with Cluster("Operational Data Hub"):
-        with Cluster("Core"):
-            pubsub_2_1 = PubSub("Pub/Sub Topic")
+    with Cluster("Operational Data Hub Platform"):
+        with Cluster("Operational Data Hub"):
+            with Cluster("Pub/Sub Topic"):
+                pubsub_2_1 = PubSub("Subscription")
 
-        with Cluster("Ingest"):
+        with Cluster("Ingest Project"):
             function_2_1 = Functions("Restingest")
+            function_2_2 = Functions("Produce delta event")
+            storage_2_1 = Storage("GCS Bucket")
 
-        with Cluster("Consume"):
-            function_2_2 = Functions("Consume")
+            function_2_1 >> storage_2_1
+            storage_2_1 - Edge(label="Bucket Trigger", style="dashed") - function_2_2 >> Edge(label="Publish") >> pubsub_2_1
 
-    with Cluster("Webshop"):
-        firestore_2_1 = Firestore("Database")
-        appengine_2_1 = AppEngine("API")
-        appengine_2_2 = AppEngine("Client")
+        with Cluster("Consume Project"):
+            function_2_3 = Functions("Consume")
 
-    server_2_1 >> Edge(label="REST") >> function_2_1 >> pubsub_2_1
-    pubsub_2_1 >> function_2_2 >> firestore_2_1
-    firestore_2_1 >> appengine_2_1 >> Edge(label="HTTPS") >> appengine_2_2
+    server_2_1 >> Edge(label="POST", color="black") >> function_2_1
+    pubsub_2_1 >> Edge(label="Subscribe") >> function_2_3 >> Edge(label="POST", color="black") >> webshop_2

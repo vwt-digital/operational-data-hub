@@ -63,10 +63,17 @@ resources can be defined, security can be organized and data can be structured.
 ## Use cases
 To describe how the ODH can be used in different ways we’ve created some use cases which will provide handles for the 
 usage of the ODH. The use cases are created for a fictional software license and computer parts webshop. The fictional 
-webshop has a decentralised application landscape and must innovate to get more value from their data. The use cases 
-describe how the ODH can improve efficiency and data-value based on the current webshop systems.
+webshop has a decentralised application landscape and must innovate to get more value from their data.
 
-### Legacy ERP system
+The following use cases describe how the ODH can improve efficiency and data-value based on the current webshop systems:
+1. [Legacy ERP system](#legacy-erp-system)
+2. [Renewal of third-party licenses](#renewal-of-third-party-licenses)
+3. [Customer support mailbox](#customer-support-mailbox)
+4. [Data science](#data-science)
+5. [Current stock](#current-stock)
+6. [Available data](#available-data)
+
+### 1. Legacy ERP system
 The original webshop was based around NaaB IV, an enterprise resource planning (ERP) system popular during the early 
 nineties. During the transition to a new and more modern webshop, the connection with NaaB IV needed to be preserved 
 because of the importance of the data. Within NaaB IV all logistic, administrative and financial business processes are 
@@ -122,7 +129,7 @@ Event sourcing consumer | Cloud Function | https://github.com/vwt-digital/event-
 Database | Firestore | https://cloud.google.com/firestore/docs
 
 
-### Renewal of third-party licenses
+### 2. Renewal of third-party licenses
 As described before, our fictional webshop sells third-party licenses that are controlled by third-party companies. One 
 of these companies, Abode, has an API where new licenses can be requested and existing licenses can be renewed or 
 cancelled. Currently, the requests for these licenses is done directly by the API used within the webshop and some form 
@@ -189,7 +196,7 @@ Restingest | Cloud Function | https://github.com/vwt-digital/restingest
 Consume | Cloud Function | https://github.com/vwt-digital/event-sourcing-consumers
 
 
-### Customer support mailbox
+### 3. Customer support mailbox
 A webshop is only as good as it’s customer support. Currently, an Outlook mailbox is where employees communicate with 
 customers. Within this mailbox, these mails have to be manually connected to a certain order or inquiry, which costs 
 employees a lot of time. An automated system processing and connecting these mails would certainly improve efficiency.
@@ -232,7 +239,7 @@ Consume | Cloud Function | https://github.com/vwt-digital/event-sourcing-consume
 Database | Firestore | https://cloud.google.com/firestore/docs
 
 
-### Data science
+### 4. Data science
 Because the market for webshops is packed you have to stand out. Currently, the webshop does not have any unique selling 
 point other than a wide range of licenses and computer parts. The solution for this is data science; analyzing and 
 mapping user activity can help by expanding the business. Right now there is not any data science opportunity as the 
@@ -275,7 +282,7 @@ API | App Engine | https://cloud.google.com/appengine/docs/the-appengine-environ
 Client | App Engine | https://cloud.google.com/appengine/docs/the-appengine-environments
 
 
-### Current stock
+### 5. Current stock
 The stock of computer parts is controlled by the warehouse from third-party sellers and the sales on the webshop. The 
 manufacturer where most of the parts are from has a system that notifies the current stock of the warehouse. At the 
 moment the webshop shows the current stock, but this is done manually by employees based on the information of the 
@@ -313,7 +320,7 @@ Restingest | Cloud Function | https://github.com/vwt-digital/restingest
 Consume | Cloud Function | https://github.com/vwt-digital/event-sourcing-consumers
 
 
-### Available data
+### 6. Available data
 After making sure the data is reachable a new data scientist is hired to make use of the data. But before this employee 
 can do his magic, a clear overview of the data is necessary. This to make it easier for the new employee but also to 
 help to substantiate the use of data in line with the General Data Protection Regulation (GDPR).

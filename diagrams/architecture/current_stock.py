@@ -1,10 +1,11 @@
 from diagrams import Cluster, Diagram, Edge
 
 from diagrams.gcp.analytics import PubSub
-from diagrams.gcp.compute import AppEngine, Functions
-from diagrams.gcp.database import Firestore
+from diagrams.gcp.compute import Functions
+from diagrams.gcp.storage import Storage
 
 from diagrams.onprem.compute import Server
+from diagrams.onprem.client import Client
 
 graph_attr = {
     "bgcolor": "transparent",
@@ -15,24 +16,30 @@ with Diagram("Current Stock", graph_attr=graph_attr, show=False, filename="image
     server_1 = Server("Third-party API")
     server_2 = Server("Third-party API")
     server_3 = Server("Third-party API")
+    webshop_1 = Client("Webshop")
 
-    with Cluster("Operational Data Hub"):
-        with Cluster("Core"):
-            pubsub_1 = PubSub("Pub/Sub Topic")
+    with Cluster("Operational Data Hub Platform"):
+        with Cluster("Operational Data Hub"):
+            with Cluster("Pub/Sub Topic X"):
+                pubsub_1 = PubSub("Subscription XA")
 
-        with Cluster("Ingest"):
+            with Cluster("Pub/Sub Topic Y"):
+                pubsub_2 = PubSub("Subscription YA")
+
+        with Cluster("Ingest Project"):
             function_1 = Functions("Restingest")
+            function_2 = Functions("Produce delta event")
+            storage_1 = Storage("GCS Bucket")
 
-        with Cluster("Consume"):
-            function_2 = Functions("Consume")
+            function_1 >> storage_1
+            storage_1 - Edge(label="Bucket Trigger", style="dashed") - function_2
 
-    with Cluster("Webshop"):
-        firestore_1 = Firestore("Database")
-        appengine_1 = AppEngine("API")
-        appengine_2 = AppEngine("Client")
+        with Cluster("Consume Project"):
+            function_3 = Functions("Consume")
 
-    server_1 >> Edge(label="REST") >> function_1
-    server_2 >> Edge(label="REST") >> function_1
-    server_3 >> Edge(label="REST") >> function_1
-    function_1 >> pubsub_1 >> function_2 >> firestore_1
-    firestore_1 >> appengine_1 >> Edge(label="HTTPS") >> appengine_2
+    server_1 >> Edge(label="REST - POST", color="blue") >> function_1
+    server_2 >> Edge(label="REST - POST", color="orange") >> function_1
+    server_3 >> Edge(label="REST - POST", color="orange") >> function_1
+    function_2 >> Edge(label="Publish", color="blue") >> pubsub_1 >> Edge(label="Subscribe", color="blue") >> function_3
+    function_2 >> Edge(label="Publish", color="orange") >> pubsub_2 >> Edge(label="Subscribe", color="orange") >> function_3
+    function_3 >> Edge(label="REST - POST", color="black") >> webshop_1

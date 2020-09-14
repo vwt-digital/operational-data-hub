@@ -14,20 +14,21 @@ graph_attr = {
 with Diagram("Available Data", graph_attr=graph_attr, show=False, filename="images/available_data"):
     github_1 = Github("GitHub repo")
 
-    with Cluster("Operational Data Hub"):
-        with Cluster("Core"):
-            pubsub_1 = PubSub("Pub/Sub Topic")
+    with Cluster("Operational Data Hub Platform"):
+        with Cluster("Operational Data Hub"):
+            with Cluster("Pub/Sub Topic"):
+                pubsub_1 = PubSub("Subscription")
 
-        with Cluster("Ingest"):
+        with Cluster("Ingest Project"):
             function_1 = Build("Cloud Build")
 
-        with Cluster("Consume"):
+        with Cluster("Consume Project"):
             function_2 = Functions("Consume catalog")
 
-    with Cluster("CKAN"):
-        computeengine_1 = ComputeEngine("CKAN VM")
-        sql_1 = SQL("PostgreSQL")
+            with Cluster("CKAN"):
+                computeengine_1 = ComputeEngine("CKAN VM")
+                sql_1 = SQL("PostgreSQL")
 
-    github_1 >> Edge(label="Build Trigger") >> function_1 >> pubsub_1
-    pubsub_1 >> function_2 >> sql_1
+    github_1 >> Edge(label="Build Trigger", color="black") >> function_1 >> Edge(label="Publish") >> pubsub_1
+    pubsub_1 >> Edge(label="Subscribe") >> function_2 >> sql_1
     sql_1 >> Edge(label="SSL") >> computeengine_1
