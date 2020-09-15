@@ -36,8 +36,6 @@ with Diagram("Data Science", graph_attr=graph_attr, show=False, filename="images
                 dataflow_2 = Dataflow("Backfill/reprocess")
 
     pubsub_1_1 >> dataflow_1
-    dataflow_1 >> bigquery_1 >> dataflow_2
-    dataflow_1 >> aiplatform_1 >> dataflow_2
-    dataflow_1 >> firestore_2 >> dataflow_2
+    dataflow_1 >> [bigquery_1, aiplatform_1, firestore_2] >> dataflow_2
     bigquery_1 >> Edge(label="Results", color="orange") >> function_1 >> Edge(color="orange") >> pubsub_2_1
     pubsub_2_1 >> Edge(label="Results", color="orange") >> webshop_1
