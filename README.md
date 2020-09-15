@@ -1,4 +1,4 @@
-<img src="https://img.shields.io/badge/status-passing-orange" alt="Status" title="Status">
+<img src="https://img.shields.io/badge/status-final-green" alt="Status" title="Status">
 
 # Operational Data Hub
 
