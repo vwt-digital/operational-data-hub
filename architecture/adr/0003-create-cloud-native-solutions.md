@@ -7,15 +7,6 @@ Date: 2020-09-21
 Accepted
 
 Implemented by [56. Deploy on Google Cloud Platform](0056-deploy-on-google-cloud-platform.md)
-# 3. Create cloud native solutions
-
-Date: 2020-09-21
-
-## Status
-
-Accepted
-
-Implemented by [56. Deploy on Google Cloud Platform](0056-deploy-on-google-cloud-platform.md)
 
 ## Context
 
