@@ -57,5 +57,6 @@ The Architecture principles are managed usign adr-tools. See [1. Record architec
 * [53. Project company data](0053-project-company-data.md)
 * [54. Coding guidelines](0054-coding-guidelines.md)
 * [55. Feature toggles over feature branching](0055-feature-toggles-over-feature-branching.md)
+* [56. Deploy on Google Cloud Platform](0056-deploy-on-google-cloud-platform.md)
 
 This file was generated using: `adr generate toc -i intro.md -o outro.md > README.md`
