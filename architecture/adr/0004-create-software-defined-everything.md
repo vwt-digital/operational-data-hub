@@ -1,4 +1,4 @@
-# 4. Create software defined everything
+# 4. Create software defined everything 
 
 Date: 2020-09-21
 
@@ -36,12 +36,21 @@ Implemented by [55. Feature toggles over feature branching](0055-feature-toggles
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+Software-defined everything (SDx) is the definition of technical computing infrastructure entirely under the control of software with no operator or human intervention. It operates independent of any hardware-specific dependencies and is programmatically extensible.
+
+In the SDx approach, an application's infrastructure requirements are defined declaratively (both functional and non-functional requirements) such that sufficient and appropriate hardware can be automatically derived and provisioned to deliver those requirements.
+
+The benefits of SDx is that it lowers/eliminates effort towards infrastructure maintenance, allows companies to move focus to other parts of the software, ensures consistence while also allowing for extensibility, remote deployment through configuration without downtime, and allows you to leverage the power of versioning such as git.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+Where possible software and infrastructure (or whatever) are deployed from source code. No human management of software and infrastructure is performed.
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+### Advantages
+Advanced capabilities enable the transition from one configuration to another without downtime as mentioned before, by automatically calculating the set of state changes between one configuration and another and an automated transition step between each step, thus achieving the complete change via software.
+
+### Disadvantages
+Developing an SDx-ready organization requires people who have the right mindset, not just the right skill set.
+
