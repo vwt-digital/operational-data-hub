@@ -8,6 +8,8 @@ Accepted
 
 Implements [4. Create software defined everything](0004-create-software-defined-everything.md)
 
+Implements [5. Build Open Source solutions](0005-build-open-source-solutions.md)
+
 ## Context
 
 The issue motivating this decision, and any context that influences or constrains the decision.

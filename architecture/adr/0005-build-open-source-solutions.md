@@ -6,6 +6,8 @@ Date: 2020-09-21
 
 Accepted
 
+Implemented by [45. Code / config separation](0045-code-config-separation.md)
+
 ## Context
 
 Open source software is software with source code that anyone can inspect, modify, and enhance.
