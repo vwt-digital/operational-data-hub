@@ -32,12 +32,16 @@ Implemented by [41. Deployment through Pull Request](0041-deployment-through-pul
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+Secure by design, in software engineering, means that the software has been designed from the foundation to be secure. Secure by Design is more increasingly becoming the mainstream development approach to ensure security and privacy of software systems. In this approach, security is built in the system from the ground up and starts with a robust architecture design.
+“The problem is: 95 percent of successful attacks are due to poorly programmed, poorly maintained or poorly configured software,” says Thomas Tschersich, Head of Internal Security & Cyber Defense at Deutsche Telekom.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+Security is built-in in all our designs from the start. Security is not something which is built in afterwards.
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+### All security related issues need to be handeled with high prioroty.
+### Security awareness should be on everyones mind
+### Security related issues should be trained regular
+
