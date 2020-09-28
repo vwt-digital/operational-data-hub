@@ -8,12 +8,12 @@ Accepted
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+All data that is related to geographic structures is added to the ODH in a standerdized way.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+GeoJSON is a format for encoding a variety of geographic data structures (https://tools.ietf.org/html/rfc7946)
+GeoJSON-events extends RFC 7649 GeoJSON with instants and intervals of time (https://github.com/sgillies/geojson-events)
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
