@@ -1,14 +1,14 @@
-# 29. Components are named according to naming conventions
+# 57. Naming convention defines URI tags
 
-Date: 2020-09-21
+Date: 2020-09-30
 
 ## Status
 
 Accepted
 
-Implements [17. DDD defines ubiquitous language](0017-ddd-defines-ubiquitous-language.md)
+Implements [9. URI identifies data](0009-uri-identifies-data.md)
 
-Implemented by [57. Naming convention defines URI tags](0057-naming-convention-defines-uri-tags.md)
+Implements [29. Components are named according to naming conventions](0029-components-are-named-according-to-naming-conventions.md)
 
 ## Context
 
