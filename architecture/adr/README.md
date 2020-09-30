@@ -59,5 +59,6 @@ The Architecture principles are managed usign adr-tools. See [1. Record architec
 * [55. Feature toggles over feature branching](0055-feature-toggles-over-feature-branching.md)
 * [56. Deploy on Google Cloud Platform](0056-deploy-on-google-cloud-platform.md)
 * [57. Naming convention defines URI tags](0057-naming-convention-defines-uri-tags.md)
+* [58. API is trust boundary ODH](0058-api-is-trust-boundary-odh.md)
 
 This file was generated using: `adr generate toc -i intro.md -o outro.md > README.md`
