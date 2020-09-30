@@ -8,7 +8,7 @@ Accepted
 
 ## Context
 
-All data that is related to geographic structures is added to the ODH in a standerdized way.
+All data that is related to geographic structures is added to the ODH in a standardized way.
 
 ## Decision
 
@@ -17,3 +17,10 @@ GeoJSON-events extends RFC 7649 GeoJSON with instants and intervals of time (htt
 
 ## Consequences
 
+### Advantages
+
+Representation of geolocation is clear and specific.
+
+### Disadvantages
+
+Geolocation data can be represented in many different ways. Transformation to GeoJSON before publishing on the ODH and back to other formats for outgoing data introduces additional cost.

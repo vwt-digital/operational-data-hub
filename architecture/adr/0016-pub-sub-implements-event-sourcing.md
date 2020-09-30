@@ -18,6 +18,8 @@ Implemented by [22. Locations are specified in GeoJSON](0022-locations-are-speci
 
 Implemented by [23. ISO-8601 to specify date and time with timezone](0023-iso-8601-to-specify-date-and-time-with-timezone.md)
 
+Implements [11. CQRS separates read and write responsibility](0011-cqrs-separates-read-and-write-responsibility.md)
+
 ## Context
 
 The issue motivating this decision, and any context that influences or constrains the decision.

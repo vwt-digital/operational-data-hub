@@ -41,7 +41,7 @@ Security is built-in in all our designs from the start. Security is not somethin
 
 ## Consequences
 
-### All security related issues need to be handeled with high prioroty.
-### Security awareness should be on everyones mind
-### Security related issues should be trained regular
+* All security related issues need to be handeled with high prioroty.
+* Security awareness should be on everyones mind
+* Security related issues should be trained regular
 

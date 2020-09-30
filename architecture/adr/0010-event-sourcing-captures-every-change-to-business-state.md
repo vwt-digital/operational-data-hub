@@ -6,6 +6,8 @@ Date: 2020-09-21
 
 Accepted
 
+Related to [11. CQRS separates read and write responsibility](0011-cqrs-separates-read-and-write-responsibility.md)
+
 ## Context
 
 The issue motivating this decision, and any context that influences or constrains the decision.

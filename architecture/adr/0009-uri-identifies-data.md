@@ -8,6 +8,8 @@ Accepted
 
 Implemented by [57. Naming convention defines URI tags](0057-naming-convention-defines-uri-tags.md)
 
+Related to [11. CQRS separates read and write responsibility](0011-cqrs-separates-read-and-write-responsibility.md)
+
 ## Context
 
 A Uniform Resource Identifier (URI) is a string of characters that unambiguously identifies a particular resource. To guarantee uniformity, all URIs follow a predefined set of syntax rules, but also maintain extensibility through a separately defined hierarchical naming scheme (e.g. http://).
