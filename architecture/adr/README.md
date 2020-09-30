@@ -32,7 +32,7 @@ The Architecture principles are managed usign adr-tools. See [1. Record architec
 * [28. A solution is implemented by one or more GCP projects](0028-a-solution-is-implemented-by-one-or-more-gcp-projects.md)
 * [29. Components are named according to naming conventions](0029-components-are-named-according-to-naming-conventions.md)
 * [30. life cycle management](0030-life-cycle-management.md)
-* [31. Use bucket level ACL](0031-use-bucket-level-acl.md)
+* [58. Uniform bucket-level access for storage](0031-uniform-bucket-level-access-for-storage.md)
 * [32. Oauth2 for authentication](0032-oauth2-for-authentication.md)
 * [33. Two identity providers: development / run](0033-two-identity-providers-development-run.md)
 * [34. 2FA on all user identities](0034-2fa-on-all-user-identities.md)
@@ -58,5 +58,6 @@ The Architecture principles are managed usign adr-tools. See [1. Record architec
 * [54. Coding guidelines](0054-coding-guidelines.md)
 * [55. Feature toggles over feature branching](0055-feature-toggles-over-feature-branching.md)
 * [56. Deploy on Google Cloud Platform](0056-deploy-on-google-cloud-platform.md)
+* [57. Naming convention defines URI tags](0057-naming-convention-defines-uri-tags.md)
 
 This file was generated using: `adr generate toc -i intro.md -o outro.md > README.md`

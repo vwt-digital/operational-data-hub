@@ -1,4 +1,4 @@
-# 4. Create software defined everything 
+# 4. Create software defined everything
 
 Date: 2020-09-21
 

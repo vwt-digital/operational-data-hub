@@ -8,7 +8,7 @@ Accepted
 
 Implemented by [30. life cycle management](0030-life-cycle-management.md)
 
-Implemented by [31. Use bucket level ACL](0031-use-bucket-level-acl.md)
+Implemented by [31. Uniform bucket-level access for storage](0031-uniform-bucket-level-access-for-storage.md)
 
 Implemented by [32. Oauth2 for authentication](0032-oauth2-for-authentication.md)
 

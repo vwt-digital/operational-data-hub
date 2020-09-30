@@ -1,6 +1,6 @@
-# 31. Use bucket level ACL
+# 31. Uniform bucket-level access for storage
 
-Date: 2020-09-21
+Date: 2020-09-30
 
 ## Status
 
