@@ -8,6 +8,8 @@ Accepted
 
 Implements [4. Create software defined everything](0004-create-software-defined-everything.md)
 
+Implements [12. Data catalog specifies all data components](0012-data-catalog-specifies-all-data-components.md)
+
 ## Context
 
 The issue motivating this decision, and any context that influences or constrains the decision.
