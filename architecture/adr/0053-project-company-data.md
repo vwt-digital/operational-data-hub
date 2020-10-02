@@ -10,6 +10,8 @@ Implements [4. Create software defined everything](0004-create-software-defined-
 
 Implements [12. Data catalog specifies all data components](0012-data-catalog-specifies-all-data-components.md)
 
+Implements [13. Data retention defined on each data component](0013-data-retention-defined-on-each-data-component.md)
+
 ## Context
 
 The issue motivating this decision, and any context that influences or constrains the decision.

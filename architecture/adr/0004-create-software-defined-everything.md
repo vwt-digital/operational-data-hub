@@ -36,6 +36,8 @@ Implemented by [55. Feature toggles over feature branching](0055-feature-toggles
 
 Implemented by [12. Data catalog specifies all data components](0012-data-catalog-specifies-all-data-components.md)
 
+Implemented by [13. Data retention defined on each data component](0013-data-retention-defined-on-each-data-component.md)
+
 ## Context
 
 Software-defined everything (SDx) is the definition of technical computing infrastructure entirely under the control of software with no operator or human intervention. It operates independent of any hardware-specific dependencies and is programmatically extensible.
