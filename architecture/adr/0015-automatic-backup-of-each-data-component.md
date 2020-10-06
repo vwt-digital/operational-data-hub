@@ -6,14 +6,23 @@ Date: 2020-09-21
 
 Accepted
 
+Related to [12. Data catalog specifies all data components](0012-data-catalog-specifies-all-data-components.md)
+
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+To protect against data loss, a backup of all storage components should be implemented. As all data components are specified in the [data catalog](0012-data-catalog-specifies-all-data-components.md), automated backup can be implemented from this specification.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+We will implemented automated backup based on the [data catalog](0012-data-catalog-specifies-all-data-components.md) for each component that stores data.
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+### Advantages
+
+Any component storing data on the platform will be included in the backup, protecting it for loss in case of any error or disaster occurring.
+
+
+### Disadvantages
+
+Backup has to be implemented for every component storing data that is used on the platform.

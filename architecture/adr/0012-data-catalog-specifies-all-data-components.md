@@ -10,6 +10,8 @@ Implements [4. Create software defined everything](0004-create-software-defined-
 
 Implemented by [53. Project company data](0053-project-company-data.md)
 
+Related to [15. Automatic backup of each data component](0015-automatic-backup-of-each-data-component.md)
+
 ## Context
 
 A Data Catalog is a collection of metadata, combined with data management and search tools, that helps analysts and other data users to find the data that they need, serves as an inventory of available data, and provides information to evaluate fitness data for intended uses.
