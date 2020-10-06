@@ -8,6 +8,8 @@ Accepted
 
 Implements [16. Pub/Sub implements Event sourcing](0016-pub-sub-implements-event-sourcing.md)
 
+Implemented by [19. Single schema per topic](0019-single-schema-per-topic.md)
+
 ## Context
 
 The issue motivating this decision, and any context that influences or constrains the decision.

@@ -7,15 +7,20 @@ Date: 2020-09-21
 Accepted
 
 Implements [16. Pub/Sub implements Event sourcing](0016-pub-sub-implements-event-sourcing.md)
+Implements [21. Messages are in JSON format](0021-messages-are-in-json-format.md)
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+A schema is a vocabulary that allows you to annotate and validate documents. Every topic has a schema that can validate the messages the topic receives.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+Since every topic only receives messages in JSON format (see [21. Messages are in JSON format](0021-messages-are-in-json-format.md) ), we define a JSON Schema for every topic that can validate the messages received by said topic.
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+Every message received by a topic can be validated against a schema. This way, if a message is not conform the schema, the developer knows something is amiss.
+
+## References
+
+* https://json-schema.org/, retrieved 6 October 2020
