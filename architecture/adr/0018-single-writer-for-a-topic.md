@@ -10,12 +10,12 @@ Implements [16. Pub/Sub implements Event sourcing](0016-pub-sub-implements-event
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+Topics are used to distribute events to other applications. Systems subscribing to these events will be dependent on these events. 
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+Every topic is limited to a single writer process.
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+Whenever an application needs to publish the same event already used for another application, a new topic needs to be created. When these events need to be combined in one stream a function/process needs to be added which combines the two.
