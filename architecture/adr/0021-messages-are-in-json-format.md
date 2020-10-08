@@ -12,12 +12,14 @@ Implemented by [19. Single schema per topic](0019-single-schema-per-topic.md)
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+It is preferred to use a single message type for the business events. This makes it easier to handle messages on the pub/sub system in a standerdized way.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+All business events on the ODH platform topics are formatted as [JSON](https://tools.ietf.org/html/rfc7159)
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+### Disadvantages
+
+Messages deliverd to the ODH or messages for systems conneted to the ODH might need other message formats. In these cases the messages need to be transformed from one layout to the other.
