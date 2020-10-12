@@ -25,7 +25,7 @@ The Architecture principles are managed usign adr-tools. See [1. Record architec
 * [21. Messages are in JSON format](0021-messages-are-in-json-format.md)
 * [22. Locations are specified in GeoJSON](0022-locations-are-specified-in-geojson.md)
 * [23. ISO-8601 to specify date and time with timezone](0023-iso-8601-to-specify-date-and-time-with-timezone.md)
-* [24. Refer to BLOB at the sourc project](0024-refer-to-blob-at-the-sourc-project.md)
+* [24. Refer to BLOB at the source project](0024-refer-to-blob-at-the-source-project.md)
 * [25. Domains correspond to business departments](0025-domains-correspond-to-business-departments.md)
 * [26. Solution facilitates a coherent set of business functions](0026-solution-facilitates-a-coherent-set-of-business-functions.md)
 * [27. A GCP project belongs to a single domain](0027-a-gcp-project-belongs-to-a-single-domain.md)
