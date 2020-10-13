@@ -6,7 +6,7 @@ Date: 2020-09-21
 
 Accepted
 
-Implemented by [24. Refer to BLOB at the sourc project](0024-refer-to-blob-at-the-source-project.md)
+Implemented by [24. Refer to BLOB at the source project](0024-refer-to-blob-at-the-source-project.md)
 
 Implemented by [25. Domains correspond to business departments](0025-domains-correspond-to-business-departments.md)
 
