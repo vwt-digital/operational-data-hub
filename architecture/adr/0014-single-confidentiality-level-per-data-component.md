@@ -6,14 +6,22 @@ Date: 2020-09-21
 
 Accepted
 
+Related to [31. Uniform bucket-level access for storage](0031-uniform-bucket-level-access-for-storage.md)
+
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+Granularity of access determines the boundaries of control regarding protection of confidential information. For example, a bucket has [uniform bucket level access](0031-uniform-bucket-level-access-for-storage.md). Therefore, all information in the bucket should have the same confidentiality level to make sure the right access permissions are applied.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+We will only store data of a single confidentiality level on a data component.
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+### Advantages
+
+Management of access to confidential data is bound to explicit platform components. This prevents unintented disclosure of confidential information.
+
+### Disadvantages
+
+When handling information of different access levels, additional storage components must be created and used, coming with additional overhead.

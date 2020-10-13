@@ -10,9 +10,13 @@ Implements [4. Create software defined everything](0004-create-software-defined-
 
 Implemented by [53. Project company data](0053-project-company-data.md)
 
+Related to [15. Automatic backup of each data component](0015-automatic-backup-of-each-data-component.md)
+
+Implemented by [52. ODRL policy](0052-odrl-policy.md)
+
 ## Context
 
-A Data Catalog is a collection of metadata, combined with data management and search tools, that helps analysts and other data users to find the data that they need, serves as an inventory of available data, and provides information to evaluate fitness data for intended uses.
+Metadata is structured information that describes, explains, locates, or otherwise makes it easier to retrieve, use, or manage an information resource (NISO 2004, ISBN: 1-880124-62-9). A Data Catalog is a collection of metadata, combined with data management and search tools, that helps analysts and other data users to find the data that they need, serves as an inventory of available data, and provides information to evaluate fitness data for intended uses.
 
 By specifying the data catalog as part of the application code in a schema defined by [Project Company Data](0053-project-company-data.md), deployment of the data storage can also be done from the this metadata. By only creating storage from the data catalog, it is assured that all storage on the platform is defined in the data catalog. 
 The data catalogs can be used to populate a Data Portal Platform (data catalog viewer). This makes the metadata in the data catalog accessible for users.

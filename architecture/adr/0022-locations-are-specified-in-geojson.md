@@ -10,12 +10,14 @@ Implements [16. Pub/Sub implements Event sourcing](0016-pub-sub-implements-event
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+A large numer of the events on the ODH contain location specific data. It is usefull to standardize the usage for location events.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+[GeoJSON](https://tools.ietf.org/html/rfc7946) will be used for XYZ (locations) on the ODH. When XYZt data is needed [GeoJSON-events](https://github.com/sgillies/geojson-events) should be considered.
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+None
+
+
