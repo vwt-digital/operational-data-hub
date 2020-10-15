@@ -8,14 +8,26 @@ Accepted
 
 Implements [17. DDD defines ubiquitous language](0017-ddd-defines-ubiquitous-language.md)
 
+Related to [25. Domains correspond to business departments](0025-domains-correspond-to-business-departments.md)
+
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+The projects structure of the platform can be used to protect components. By the seperation into projects a modular, loosely coupled design is created. A project belongs to a single [domain](0025-domains-correspond-to-business-departments.md), a domain can consist of multiple projects. The project implements a coherent set of functions within a single domain.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+We implement a coherent set of functions within a single domain in a GCP project.
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+### Advantages
+
+* A modular design improves changability and maintainability.
+* The platform provides controls to protect resources within a project from being accessed from the outside.
+* The amount and complexity of deployment pipelines within a project is limited, making it easy to oversea and manage.
+* Responsibility for platform functionality can be assigned at project boundaries.
+
+### Disadvantages
+
+* A lot of projects will exist, which could be overwhelming and hard to manage.
+* Projects creation and access management is an additional cost factor.
