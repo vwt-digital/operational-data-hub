@@ -32,6 +32,8 @@ Implemented by [41. Deployment through Pull Request](0041-deployment-through-pul
 
 Implemented by [58. API is trust boundary ODH](0058-api-is-trust-boundary-odh.md)
 
+Implements [59. Runtime dependency only on GCP](0059-runtime-dependency-only-on-gcp.md)
+
 ## Context
 
 Secure by design, in software engineering, means that the software has been designed from the foundation to be secure. Secure by Design is more increasingly becoming the mainstream development approach to ensure security and privacy of software systems. In this approach, security is built in the system from the ground up and starts with a robust architecture design.
