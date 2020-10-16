@@ -8,6 +8,8 @@ Accepted
 
 Implements [17. DDD defines ubiquitous language](0017-ddd-defines-ubiquitous-language.md)
 
+Implemented by [28. A solution is implemented by one or more GCP projects](0028-a-solution-is-implemented-by-one-or-more-gcp-projects.md)
+
 ## Context
 
 A lot of different functions are required to support the business. These functions can be grouped into coherent sets, referred to as a solution. The functionality defined by the set of functions can then be implemented on the platform, fulfilling the business requirements.

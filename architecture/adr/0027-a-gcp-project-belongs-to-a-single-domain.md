@@ -10,6 +10,8 @@ Implements [17. DDD defines ubiquitous language](0017-ddd-defines-ubiquitous-lan
 
 Related to [25. Domains correspond to business departments](0025-domains-correspond-to-business-departments.md)
 
+Related to [28. A solution is implemented by one or more GCP projects](0028-a-solution-is-implemented-by-one-or-more-gcp-projects.md)
+
 ## Context
 
 The projects structure of the platform can be used to protect components. By the seperation into projects a modular, loosely coupled design is created. A project belongs to a single [domain](0025-domains-correspond-to-business-departments.md), a domain can consist of multiple projects. The project implements a coherent set of functions within a single domain.
