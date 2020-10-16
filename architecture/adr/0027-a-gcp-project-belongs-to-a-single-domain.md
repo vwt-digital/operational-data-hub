@@ -18,7 +18,7 @@ The projects structure of the platform can be used to protect components. By the
 
 ## Decision
 
-We implement a coherent set of functions within a single domain in a GCP project.
+The set of functions implemented in one GCP project belongs to a single domain.
 
 ## Consequences
 
