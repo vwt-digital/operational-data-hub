@@ -12,7 +12,7 @@ Related to [27. A GCP project belongs to a single domain](0027-a-gcp-project-bel
 
 ## Context
 
-The organizational model of a company has a great influence on the communication structure in the company. Within a department, people tend to use the same teminology and definitions. This relates closely to the definition of ubiquitous language. Therefore, the domain model used on the platform should be closely related to the organizational model of the company. This is also supported by Conway's law.
+The organizational model of a company has a great influence on the communication structure in the company. Within a department, people tend to use the same terminology and definitions. This relates closely to the definition of ubiquitous language. Therefore, the domain model used on the platform should be closely related to the organizational model of the company. This is also supported by Conway's law.
 
 ## Decision
 
