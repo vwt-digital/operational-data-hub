@@ -12,12 +12,12 @@ Related to [14. Single confidentiality level per data component](0014-single-con
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+As motivated in [14. Single confidentiality level per data component](0014-single-confidentiality-level-per-data-component.md), access level granularity is kept at data component level. For buckets, this means uniform bucket-level access will be used, the more fine grained object-level ACLs will not be used.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+We will use uniform bucket-level access for storage.
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+Clear and transparent access to data. However, additional buckets are sometimes needed to store data with another accesslevel.
