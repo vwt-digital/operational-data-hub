@@ -10,12 +10,12 @@ Implements [6. Implement Security by Design](0006-implement-security-by-design.m
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+Encryption of communication is used to ensure that only the intented recipient can read the information. Even when communication is intercepted, the information will still be protected by the encryption. SSL is a widely used protocol to secure communication over Internet protocols (tcp/ip).
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+We will secure all communication using SSL.
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+The safe communication that is the result from encryption, comes with additional cost of implemention and management. However, many products nowadays feature easily configurable encryption functionality, which greatly reduces these costs. Next tot that, encryption is a requirement by policies and regulations for some sensitive types of information.
