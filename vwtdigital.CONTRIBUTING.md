@@ -52,7 +52,7 @@ New additions to the project are welcome! To help us understand the new addition
 4. Describe why it was changed. Link issues if possible.
 5. If possible, run [Cloudbuilder-SAST](https://github.com/vwt-digital/cloudbuilder-sast), and add the console output. This increases the chances of a positive merge and build.
 
-Read [What should I know before I get started?](#what-should-i-know-before-i-get-started) before making changes.
+Read the project's CONTRIBUTING.md file before creating a pull request. We use these files for project specific guidelines (above the guidelines in this file).
 
 #### Message Guidelines 
 - Use past tense (Do: `Removed ...`, don't: `Remove ...`. Do: `Added ...`, don't: `Add ...`)
