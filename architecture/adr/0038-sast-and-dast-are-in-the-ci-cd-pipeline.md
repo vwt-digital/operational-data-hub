@@ -13,6 +13,7 @@ Implements [6. Implement Security by Design](0006-implement-security-by-design.m
 Developers tend to go for getting things working, ending up with a working program, lacking the quality you would like to see.
 
 ![Build breaker](buildbreaker.jpg "Agent stopping construction worker from adding wrong quality component to the project")
+(Picture by Joëlle van Veen)
 
 Quality software is not only software that is doing what it should do. Next to the functionality, a maybe even larger amount of non-functional requirements determine the quality of software. The ISO/IEC 25010 software quality model describes performance, compatibility, portability, usability, reliability, security and maintainability as additional aspects of software quality (1). But assuring the required quality in all of these aspects appears to be hard when finishing the last few lines of code of the new feature at the end of a long working day.
 
