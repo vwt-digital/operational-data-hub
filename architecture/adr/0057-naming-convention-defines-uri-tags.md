@@ -12,12 +12,12 @@ Implements [29. Components are named according to naming conventions](0029-compo
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+A Uniform Resource Identifier (URI) is a string of characters that unambiguously identifies a particular resource. To guarantee uniformity, all URIs follow a predefined set of syntax rules, but also maintain extensibility through a separately defined hierarchical naming scheme
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+We will use [the 'tag' URI Scheme](https://tools.ietf.org/html/rfc4151). 
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+See also : [Tag URI](http://www.taguri.org/)
