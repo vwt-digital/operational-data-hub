@@ -12,12 +12,13 @@ Implemented by [57. Naming convention defines URI tags](0057-naming-convention-d
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+Organize your cloud assets to support operational management and accounting requirements. Well-defined naming and metadata tagging conventions help to quickly locate and manage resources. These conventions also help associate cloud usage costs with business teams via chargeback and showback accounting mechanisms.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+The naming cloud object naming convention is based on the Ironstone Naming conventions and can be found on our interal Wiki
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+
+Inspired by [Ironstone Naming conventions in Azure](https://www.ironstoneit.com/blog/naming-conventions-for-azure)(retrieved 11 March 2019)

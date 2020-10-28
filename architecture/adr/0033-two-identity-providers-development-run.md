@@ -10,12 +10,19 @@ Implements [6. Implement Security by Design](0006-implement-security-by-design.m
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+Access to the solutions (applications) as a user, referred to as the _run_ environment, is based on the company identity provider. Access to the development/operations environment, the GCP platform, is based on a separate, DevOps identity provider. This allows strict separation between Run and DevOps and makes automation of DevOps practices somewhat easier.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+We will use a separate identity provider to access the platform for DevOps practices, disconnected from access to the _run_ environment.
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+### Advantages
+
+* Flexible and best fitting identity provider in DevOps, decoupled from the company identity provider.
+* Reduced risk of DevOps privileges making it work for a developer, but not for a normal user.
+
+### Disadvantages
+
+* Additional overhead of user management and corresponding procedures.

@@ -10,12 +10,12 @@ Implements [6. Implement Security by Design](0006-implement-security-by-design.m
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+Secrets must be protected according to the least-privilege principle. To reduce the trusted computing base, preferrably a 3rd party secret management tool is used to manage and use secrets. Google Secret Mananager is a managed service on GCP, integrated into the platform. This makes it a suitable tool to manage our secrets.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+We will use GCP Secret Manager to manage, store and use secrets.
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+Secret Manager provides a secure and reliable way to handle secrets. It is integrated in the platform, which simplifies using it. Outside the platform (e.g. external services) can use it through the API. However, authenticating to Secret Manager requires special attention in that case.
