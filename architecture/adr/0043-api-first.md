@@ -10,12 +10,14 @@ Implements [4. Create software defined everything](0004-create-software-defined-
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+An API-first approach means that for any given development project, your APIs are treated as “first-class citizens.” That everything about a project revolves around the idea that the end product will be consumed by mobile devices, and that APIs will be consumed by client applications. An API-first approach involves developing APIs that are consistent and reusable, which can be accomplished by using an API description language to establish a contract for how the API is supposed to behave.  Establishing a contract involves spending more time thinking about the design of an API. It also often involves additional planning and collaboration with the stakeholders providing feedback on the design of an API before any code is written.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+Starting a new project starts with building and documenting the API.
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+
+[Swagger API 1st approach](https://swagger.io/resources/articles/adopting-an-api-first-approach/)
+[Zalando API 1st](https://opensource.zalando.com/restful-api-guidelines/#100)
