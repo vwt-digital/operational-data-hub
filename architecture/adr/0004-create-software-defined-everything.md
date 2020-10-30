@@ -38,6 +38,8 @@ Implemented by [12. Data catalog specifies all data components](0012-data-catalo
 
 Implemented by [13. Data retention defined on each data component](0013-data-retention-defined-on-each-data-component.md)
 
+Implemented by [41. Deployment through Pull Request](0041-deployment-through-pull-request.md)
+
 ## Context
 
 Software-defined everything (SDx) is the definition of technical computing infrastructure entirely under the control of software with no operator or human intervention. It operates independent of any hardware-specific dependencies and is programmatically extensible.

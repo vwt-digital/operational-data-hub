@@ -8,6 +8,8 @@ Accepted
 
 Implements [4. Create software defined everything](0004-create-software-defined-everything.md)
 
+Related to [41. Deployment through Pull Request](0041-deployment-through-pull-request.md)
+
 ## Context
 
 The issue motivating this decision, and any context that influences or constrains the decision.
