@@ -10,6 +10,8 @@ Implements [6. Implement Security by Design](0006-implement-security-by-design.m
 
 Implemented by [40. HPA](0040-hpa.md)
 
+Implemented by [58. API is trust boundary ODH](0058-api-is-trust-boundary-odh.md)
+
 ## Context
 
 The principle of least privilege means that every module (such as a process, a user, or a program, depending on the subject) must be able to access only the information and resources that are necessary for its legitimate purpose.
