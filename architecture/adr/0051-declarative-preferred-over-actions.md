@@ -14,7 +14,7 @@ In computer science, declarative programming is a programming paradigm—a style
 
 Many languages that apply this style attempt to minimize or eliminate side effects by describing what the program must accomplish in terms of the problem domain, rather than describe how to accomplish it as a sequence of the programming language primitives (the how being left up to the language's implementation). This is in contrast with imperative programming, e.g. actions in Deployment Manager, which implements algorithms in explicit steps.
 
-Declarative specifications are more clear on the expected result, once you are familair with the syntax. To understand the result of imperative specifications, interpretation of the statements in order of execution is required. Declarative syntax more explictly states the result. Next to that, declarative specifications are context-independant. They state what should be there, instead of continuing on things that happened (or should have happened) before.
+Declarative specifications are more clear on the expected result, once you are familair with the syntax. To understand the result of imperative specifications, interpretation of the statements in order of execution is required. Declarative syntax more explicitly states the result. Next to that, declarative specifications are context-independant. They state what should be there, instead of continuing on things that happened (or should have happened) before.
 
 ## Decision
 

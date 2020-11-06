@@ -36,7 +36,7 @@ We will use the [Project company data](https://vwt-digital.github.io/project-com
 
 ### Disadvantages
 
-* The machine readable JSON format is hard to read and write for humans.
+* The machine readable JSON format can be hard to read and write for humans.
 
 ## References
 
