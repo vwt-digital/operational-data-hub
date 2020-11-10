@@ -12,12 +12,10 @@ Implements [5. Build Open Source solutions](0005-build-open-source-solutions.md)
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+Both Code and Configuration reside in source code control (Github in our case). This makes it very easy to mix-up code and configuration. However, these 2 should be clearly separated. Where possible code can be reused, but configuration is most of the times instance specific.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+Code and Configuration is clearly separated. At deployment time the CI/CD tools are responsible for bringin code and config together and deploy the code together with the correct configuration.
 
 ## Consequences
-
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
