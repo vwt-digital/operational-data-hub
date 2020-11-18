@@ -1,6 +1,6 @@
 # 50. Expand pip requirements
 
-Date: 2020-09-21
+Date: 2020-11-18
 
 ## Status
 
@@ -10,12 +10,12 @@ Implements [4. Create software defined everything](0004-create-software-defined-
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+Code Injection is a specific type of injection attack where an executable program statement is constructed involving user input at an attack surface that becomes vulnerable when it can be manipulated in an unanticipated way to invoke functionality that can be used to cause harm.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+To prevent dependency injection attacks we decide to have both an requirements.unexpanded.txt and an (development time / pip freeze) generated requirements.txt
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+Please check the 'Way of Working' document on [Confluence](https://recognize.atlassian.net/wiki/spaces/DAT/pages)
