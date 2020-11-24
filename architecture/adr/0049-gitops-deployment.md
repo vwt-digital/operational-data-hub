@@ -12,12 +12,14 @@ Related to [41. Deployment through Pull Request](0041-deployment-through-pull-re
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+GitOps is a way of implementing Continuous Deployment for cloud native applications. It focuses on a developer-centric experience when operating infrastructure, by using tools developers are already familiar with, including Git and Continuous Deployment tools.
+
+The core idea of GitOps is having a Git repository that always contains declarative descriptions of the infrastructure currently desired in the production environment and an automated process to make the production environment match the described state in the repository. If you want to deploy a new application or update an existing one, you only need to update the repository - the automated process handles everything else. It’s like having cruise control for managing your applications in production.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+All cloud objects are deployed using gitops processes. A push to the git repo will trigger a cloud build process which will install all needed objects
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+[Gitops](https://www.gitops.tech/)

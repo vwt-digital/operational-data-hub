@@ -1,6 +1,6 @@
 # 47. Shell scripting
 
-Date: 2020-09-21
+Date: 2020-11-18
 
 ## Status
 
@@ -10,12 +10,13 @@ Implements [4. Create software defined everything](0004-create-software-defined-
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+A Unix shell is a command-line interpreter or shell that provides a command line user interface for Unix-like operating systems. The shell is both an interactive command language and a scripting language, and is used by the operating system to control the execution of the system using shell scripts.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+Within the Linux exnvironment Bash (Bourne Again Shell) is the most popular which will be used within our environment. Shell scripts should comply with the CheckCheck linter. 
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+[Bash](https://www.gnu.org/software/bash/)
+[ShellCheck](https://www.shellcheck.net/)
