@@ -8,7 +8,7 @@ Accepted
 
 ## Context
 
-We need to record the coding standard decisions made on this project.
+We need to record the coding standard decisions made on the ODH platform.
 
 ## Decision
 
