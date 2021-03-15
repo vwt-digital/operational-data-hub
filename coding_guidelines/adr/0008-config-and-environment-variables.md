@@ -28,16 +28,24 @@ When building something, you might need variables that you are only going to use
 
 **Examples**
 
-`config.py` <br>
-*Stored in a repository and merged into the project environment (or the other way around)*
+Configuration stored in a repository and merged into the project environment (or the other way around), like this example:
+
+`config.py`
 ```python
 INDEX = 0
 TOKEN = 'AAAAaaaaBBBBbbbb'
 ```
+`__main__.py`
+```python
+from config import INDEX, TOKEN
+```
 
-`cloudbuild.yaml` <br>
-*Environment variable used to build in a specific step*
+<br>
+
+Configuration as an environment variable used to build in a specific step, like this example:
 ```yaml
+substitutions:
+  _VENV: '/venv'
   - name: 'cloud'
     entrypoint: 'bash'
     args:
