@@ -7,5 +7,6 @@
 * [5. oauth scope naming convention](0005-oauth-scope-naming-convention.md)
 * [6. openapi guidelines](0006-openapi-guidelines.md)
 * [7. starting a flask app](0007-starting-a-flask-app.md)
+* [8. config and environment variables](0008-config-and-environment-variables.md)
 
-This file was generated using: `adr generate toc -o outro.md > R˜EADME.md`
+This file was generated using: `adr generate toc -o outro.md > README.md`

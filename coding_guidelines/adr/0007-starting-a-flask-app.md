@@ -1,4 +1,4 @@
-# 6. Starting a Flask App
+# 7. Starting a Flask App
 
 Date: 2021-03-11
 
