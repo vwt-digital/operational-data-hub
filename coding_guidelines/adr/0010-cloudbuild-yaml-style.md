@@ -40,33 +40,36 @@ The following rules should be followed when deciding on the order of the steps i
 ### 6. Avoid if-else statements based on branches
 Avoid if-else statements based on branch names.
 
-### 7. Bash rules
-Some bash rules:
-* When bash is used as entrypoint for a step, use `'gcr.io/google.com/cloudsdktool/cloud-sdk:latest'` als build container (in the `name` field of the step).
-* When using bash as entrypoint in a cloud build step, one should always use a pipe.
+### 7. Build container
+Always use `'gcr.io/google.com/cloudsdktool/cloud-sdk:latest'` als build container (in the `name` field of the step). Different entrypoints can be used with this container.
 
-### 8. Function call in step
+### 8. Bash pipe
+When using bash as entrypoint in a cloud build step, one should always use a pipe.
+
+### 9. Function call in step
 If a function call is done in a step, its command plus subcommand should be on one line while its options or flags should be defined on separate lines. One should also use the long options if they are available, e.g. `-q` becomes `--quiet`.
 
-### 9. Do not use gcloud as entrypoint
+### 10. Do not use gcloud as entrypoint
 Do not use `gcloud` as entrypoint but use bash instead when having to call gcloud functionalities.
 
-### 10. Cloud scheduler deletion
+### 11. Cloud scheduler deletion
 When deploying a cloud scheduler, the old "version" of this scheduler should first be deleted before redeployment.
 
-### 11. One line commands without bash entrypoint
+### 12. One line commands without bash entrypoint
 When a step only has one line and does not have a bash entrypoint, there are two ways you can define the step. Below is an example of a step where a github repository is cloned.
 * ```yaml
-  - name: 'gcr.io/cloud-builders/git'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:latest'
     id: 'cloning-repository'
+    entrypoint: 'git'
     args:
       - 'clone'
       - '--branch=git-branch'
       - 'github-repository-url'
   ```
 * ```yaml
-  - name: 'gcr.io/cloud-builders/git'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:latest'
     id: 'cloning-repository'
+    entrypoint: 'git'
     args: ['clone', '--branch=git-branch', 'github-repository-url']
   ```
 
@@ -94,7 +97,7 @@ When a step only has one line and does not have a bash entrypoint, there are two
   id: 'deploy-permissions-function'
   entrypoint: 'bash'
   args:
-    gcloud beta functions set-iam-policy function-func \
+    gcloud functions set-iam-policy function-func \
         --region=region \
         --project=project \
         permissions.json
