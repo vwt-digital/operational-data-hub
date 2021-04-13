@@ -8,5 +8,7 @@
 * [6. openapi guidelines](0006-openapi-guidelines.md)
 * [7. starting a flask app](0007-starting-a-flask-app.md)
 * [8. config and environment variables](0008-config-and-environment-variables.md)
+* [9. cloud function entrypoint](0009-cloud-function-entrypoint.md)
+* [10. cloudbuild.yaml style](0010-cloudbuild-yaml-style.md)
 
 This file was generated using: `adr generate toc -o outro.md > README.md`
