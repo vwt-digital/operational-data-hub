@@ -11,5 +11,6 @@
 * [9. cloud function entrypoint](0009-cloud-function-entrypoint.md)
 * [10. cloudbuild.yaml style](0010-cloudbuild-yaml-style.md)
 * [11. storage naming guidelines](0011-storage-naming-guidelines.md)
+* [12. repository organisation rules](0012-repository-organisation-rules.md)
 
 This file was generated using: `adr generate toc -o outro.md > README.md`
