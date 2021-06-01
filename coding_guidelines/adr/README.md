@@ -12,5 +12,6 @@
 * [10. cloudbuild.yaml style](0010-cloudbuild-yaml-style.md)
 * [11. storage naming guidelines](0011-storage-naming-guidelines.md)
 * [12. repository organisation rules](0012-repository-organisation-rules.md)
+* [13. Dataflow Diagrams](0013-dataflow-diagrams.md)
 
 This file was generated using: `adr generate toc -o outro.md > README.md`
