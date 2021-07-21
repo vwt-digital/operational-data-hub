@@ -4,9 +4,11 @@ Date: 2020-11-18
 
 ## Status
 
-Accepted
+DEPRECATED
 
 Implements [4. Create software defined everything](0004-create-software-defined-everything.md)
+
+Deprecated by [60. lock-pip-requirements](0060-lock-pip-requirements.md)
 
 ## Context
 
