@@ -1,6 +1,7 @@
 # 19. Single schema per topic
 
 Date: 2020-09-21
+Update: 2021-07-21
 
 ## Status
 
@@ -16,6 +17,7 @@ A schema is a vocabulary that allows you to annotate and validate documents. Eve
 ## Decision
 
 Since every topic only receives messages in JSON format (see [21. Messages are in JSON format](0021-messages-are-in-json-format.md) ), we define a JSON Schema for every topic that can validate the messages received by said topic.
+If a JSON schema contains an object with a primary key, the field `primary_key` should be added at the same depth as the `required` field. This is not an official json-schema field.
 
 ## Consequences
 
